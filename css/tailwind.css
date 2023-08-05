@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.DarkroomMacbookPro14Desktop {
+  background-image: url('../img/dr-bg.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.GuestMessage>div {
+  border-radius: 0px 15px 15px 15px;
+  border: 1.3px solid #fff;
+
+  float: left;
+}
+
+.MyMessage>div {
+  border-radius: 15px 15px 0px 15px;
+  border: 1.6px solid #FF537C;
+
+  float: right;
+}
+
+.Beboy {
+  outline: none;
+  height: 100%;
+  float: left;
+}
+
+#chat_list {
+  height: auto;
+  position: relative;
+  padding: 11px 17px
+}
+
+.ChatItem {
+  margin-bottom: 10px;
+  width: 100%;
+  display: inline-block;
+}
+
+.ChatItem>div {
+  padding: 11px;
+}
+
+#chat_input {
+  width: 83%;
+  height: 80%;
+  background: none;
+  border: none;
+  outline: none;
+  margin: -15px -10px;
+  float: left;
+}
+
+.ChatWindows.desktop {
+  right: 30px;
+  position: fixed;
+  left: inherit;
+}
