@@ -1,5 +1,13 @@
 let dataChat = [
-  { s: 'guest', m: 'Tiền của tôi đâu?' }
+  { s: 'guest', m: 'Phí môi giới của tôi tăng theo phí của V', typing: true },
+  { s: 'guest', m: 'Tôi cũng muốn có phần của tôi hôm nay' },
+  { s: 'guest', m: 'Không, phần của tôi phải có đêm nay' },
+  { s: 'guest', m: 'Lần này tôi cần tiền mặt' },
+  { s: 'guest', m: 'Đâu rồi?' },
+  { s: 'guest', m: 'Khi nào tôi có tiền?' },
+  { s: 'guest', m: 'Không' },
+  { s: 'guest', m: 'Tôi cần tiền mặt' },
+  { s: 'guest', m: 'Gấp!' },
 ]
 
 // Debounce function to introduce delay
@@ -13,7 +21,7 @@ function debounce(func, delay) {
 
 // Function to append messages to ChatWindows
 function appendMessage(message, messageType) {
-  if (!message) { 
+  if (!message) {
     return;
   }
   const chatWindow = document.querySelector('#chat_list');
@@ -36,23 +44,25 @@ function appendMessage(message, messageType) {
 
 // Function to handle keyup events globally
 function handleKeyUp(event) {
+
   if (event.keyCode === 39) { // add chat guest
+    const msg = dataChat.shift();
     debounce(() => {
       document.querySelector('#typing').classList.remove('hidden')
     }, 100)();
 
     debounce(() => {
-      appendMessage(dataChat.shift().m, 'guest');
+      appendMessage(msg.m, 'guest');
       document.querySelector('#typing').classList.add('hidden');
-    }, 200)();
+    }, msg.typing ? 2000 : 100)();
 
 
-  // } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
-  //   dataChat = [
-  //     { s: 'guest', m: 'Tiền của tôi đâu?' },
-  //   ]
-  //   // Empty the ChatWindows
-  //   document.querySelector('#chat_list').innerHTML = '';
+    // } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
+    //   dataChat = [
+    //     { s: 'guest', m: 'Tiền của tôi đâu?' },
+    //   ]
+    //   // Empty the ChatWindows
+    //   document.querySelector('#chat_list').innerHTML = '';
   }
 }
 

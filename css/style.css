@@ -1073,7 +1073,6 @@ video {
 }
 
 .ChatItem {
-  margin-bottom: 10px;
   width: 100%;
   display: inline-block;
 }
@@ -1114,7 +1113,7 @@ video {
   right: 75px;
 }
 
-.ChatterName{
+.ChatterName {
   font-size: 14px;
 }
 
