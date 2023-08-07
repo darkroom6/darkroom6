@@ -56,8 +56,28 @@
   float: left;
 }
 
-.ChatWindows.desktop {
+.ChatWindows {
   right: 30px;
   position: fixed;
-  left: inherit;
+  bottom: 124px;
+}
+
+#chat_room {
+  position: fixed;
+  right: 60px;
+  bottom: 50px;
+  width: calc(100% - 120px);
+}
+
+.ChatRoom1 {
+  float: right;
+}
+
+.ChatRoom2 {
+  float: right;
+}
+
+.Footer {
+  position: absolute;
+  bottom: 15px;
 }
