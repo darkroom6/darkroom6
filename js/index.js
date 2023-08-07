@@ -34,14 +34,9 @@ function appendMessage(message, messageType) {
 
 // Function to handle keyup events globally
 function handleKeyUp(event) {
-  const inputText = event.key.trim().toLowerCase();
-  if (event.keyCode === 39) {
-    // Append your chat message after 100ms
-    debounce(() => appendMessage(dataChat.mine.shift(), 'mine'), 100)();
-  } else if (inputText === 'g') {
-    // Append guest chat message after 100ms
+  if (event.keyCode === 39) { // add chat guest
     debounce(() => appendMessage(dataChat.guest.shift(), 'guest'), 100)();
-  } else if (event.keyCode === 46 || event.keyCode === 8) {
+  } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
     dataChat = [
       { s: 'guest', m: 'K đang gặp H' },
       { s: 'guest', m: 'K & H sẽ đến nhà ông Khê.' },
