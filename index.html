@@ -88,11 +88,11 @@
       </div>
       <div id="chat_list" class="ChatList">
         <div
-          class="ChatItem GuestMessage h-[60px] px-[23px] py-5 rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
+          class="ChatItem GuestMessage h-[60px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
           <div class="text-white text-base font-medium">K đang gặp H</div>
         </div>
         <div
-          class="ChatItem GuestMessage h-[60px] px-[23px] py-5 rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
+          class="ChatItem GuestMessage h-[60px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
           <div class="text-white text-base font-medium">K &amp; H sẽ đến nhà ông Khê.</div>
         </div>
       </div>
@@ -100,9 +100,9 @@
       </div>
       <div
         class="Footer pl-[23px] pr-5 py-[18px] left-[17px] bg-orange-950 rounded-[15px] border border-rose-400 justify-center items-center gap-[23px] inline-flex">
-        <div class="Beboy"><input id="chat_input" type="text" placeholder="Beboy"></div>
+        <div class="ChatText"><input id="chat_input" type="text" placeholder="Beboy"></div>
         <div class="UserInterfacePaperPlane w-6 h-6 relative flex-col justify-start items-start flex">
-          <div class="UserInterfacePaperPlane w-6 h-6 right-[18px] absolute">
+          <div class="UserInterfacePaperPlane w-6 h-6 absolute">
             <span id="send_chat"><img src="svg/send.svg" alt=""></span>
           </div>
         </div>
@@ -111,17 +111,18 @@
     </div>
     <div id="chat_room">
       <div class="ChatRoom1 w-[60px] h-[60px]">
-        <div class="Rectangle2 w-[60px] h-[60px] top-0 bg-rose-400 rounded-[30px] border border-rose-400">
+        <div class="Rectangle2 right-0 w-[60px] h-[60px] top-0 bg-rose-400 rounded-[30px] border border-rose-400">
         </div>
         <div
-          class="Be left-[19px] top-[22px] absolute text-center text-black text-sm font-bold uppercase tracking-[2.80px]">
+          class="ChatterName Be top-[22px] absolute text-center text-black text-sm font-bold uppercase tracking-[2.80px]">
           BE</div>
       </div>
-      <div class="ChatRoom2 w-[60px] h-[60px] top-0  ">
+
+      <div class="ChatRoom2 right-[75px] w-[60px] h-[60px] top-0  ">
         <div class="Rectangle2 w-[60px] h-[60px] top-0 absolute rounded-[30px] border border-black border-opacity-40">
         </div>
         <div
-          class="Gs left-[19px] top-[22px] absolute text-center text-black text-opacity-40 text-sm font-bold uppercase tracking-[2.80px]">
+          class="ChatterName Gs top-[22px] absolute text-center text-black text-opacity-40 text-sm font-bold uppercase tracking-[2.80px]">
           GS</div>
       </div>
     </div>

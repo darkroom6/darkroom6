@@ -28,19 +28,23 @@
   float: right;
 }
 
-.Beboy {
+.ChatText {
   outline: none;
   height: 100%;
   float: left;
+  width: 100%;
+  color: #fff;
 }
 
 #chat_list {
   height: auto;
   position: relative;
-  padding: 11px 17px;
+  padding: 11px 36px;
   top: 66px;
   height: calc(100% - 140px);
-  overflow-x: auto;
+  overflow-y: scroll;
+  width: calc(100% + 18px);
+  overflow-x: hidden;
 }
 
 .ChatItem {
@@ -54,12 +58,10 @@
 }
 
 #chat_input {
-  width: 83%;
-  height: 80%;
+  width: 100%;
   background: none;
   border: none;
   outline: none;
-  margin: -15px -10px;
   float: left;
 }
 
@@ -67,13 +69,15 @@
   right: 30px;
   position: fixed;
   bottom: 124px;
+  overflow: hidden;
 }
 
 #chat_room {
   position: fixed;
   right: 60px;
-  bottom: 50px;
+  bottom: 20px;
   width: calc(100% - 120px);
+  font-size: 14px;
 }
 
 .ChatRoom1 {
@@ -82,15 +86,16 @@
 
 .ChatRoom2 {
   float: right;
+  right: 75px;
 }
-
+.ChatterName{font-size: 14px;}
 .Footer {
   position: absolute;
   bottom: 15px;
   width: 95%;
 }
 
-.Typing{
+.Typing {
   position: absolute;
   left: 17px;
   bottom: 80px;
@@ -106,18 +111,23 @@
   0% {
     width: 0;
   }
+
   30% {
     width: 60%;
   }
+
   100% {
     width: 100%;
   }
 }
 
 @keyframes cursor-animation {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
