@@ -33,7 +33,16 @@ function appendMessage(message, messageType) {
 // Function to handle keyup events globally
 function handleKeyUp(event) {
   if (event.keyCode === 39) { // add chat guest
-    debounce(() => appendMessage(dataChat.shift().m, 'guest'), 100)();
+    debounce(() => {
+      document.querySelector('#typing').classList.remove('hidden')
+    }, 100)();
+
+    debounce(() => {
+      appendMessage(dataChat.shift().m, 'guest');
+      document.querySelector('#typing').classList.add('hidden');
+    }, 2000)();
+
+
   } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
     dataChat = [
       { s: 'guest', m: 'Tiền của tôi đâu?' },
