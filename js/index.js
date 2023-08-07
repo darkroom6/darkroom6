@@ -1,12 +1,8 @@
-let dataChat = {
-  guest: [
-    'K đang gặp H',
-    'K & H sẽ đến nhà ông Khê.'
-  ],
-  mine: [
-    'Tôi muốn kết nối thử.'
-  ]
-}
+let dataChat = [
+  { s: 'guest', m: 'K đang gặp H' },
+  { s: 'guest', m: 'K & H sẽ đến nhà ông Khê.' },
+  { s: 'me', m: 'Tôi muốn kết nối thử.' }
+]
 
 // Debounce function to introduce delay
 function debounce(func, delay) {
@@ -39,22 +35,18 @@ function appendMessage(message, messageType) {
 // Function to handle keyup events globally
 function handleKeyUp(event) {
   const inputText = event.key.trim().toLowerCase();
-  if (inputText === 'm') {
+  if (event.keyCode === 39) {
     // Append your chat message after 100ms
     debounce(() => appendMessage(dataChat.mine.shift(), 'mine'), 100)();
   } else if (inputText === 'g') {
     // Append guest chat message after 100ms
     debounce(() => appendMessage(dataChat.guest.shift(), 'guest'), 100)();
-  } else if (inputText === 'c') {
-    dataChat = {
-      guest: [
-        'K đang gặp H',
-        'K & H sẽ đến nhà ông Khê.'
-      ],
-      mine: [
-        'Tôi muốn kết nối thử.'
-      ]
-    }
+  } else if (event.keyCode === 46 || event.keyCode === 8) {
+    dataChat = [
+      { s: 'guest', m: 'K đang gặp H' },
+      { s: 'guest', m: 'K & H sẽ đến nhà ông Khê.' },
+      { s: 'me', m: 'Tôi muốn kết nối thử.' }
+    ]
     // Empty the ChatWindows
     document.querySelector('#chat_list').innerHTML = '';
   }
