@@ -638,10 +638,6 @@ video {
   left: 50px;
 }
 
-.left-\[535px\] {
-  left: 535px;
-}
-
 .left-\[5px\] {
   left: 5px;
 }
@@ -670,16 +666,16 @@ video {
   right: 100px;
 }
 
+.right-\[18px\] {
+  right: 18px;
+}
+
 .right-\[60px\] {
   right: 60px;
 }
 
 .top-0 {
   top: 0px;
-}
-
-.top-\[147px\] {
-  top: 147px;
 }
 
 .top-\[15px\] {
@@ -746,10 +742,6 @@ video {
   top: 76px;
 }
 
-.top-\[77px\] {
-  top: 77px;
-}
-
 .top-\[837px\] {
   top: 837px;
 }
@@ -802,28 +794,12 @@ video {
   width: 1.5rem;
 }
 
-.w-72 {
-  width: 18rem;
-}
-
-.w-\[150px\] {
-  width: 150px;
-}
-
 .w-\[1512px\] {
   width: 1512px;
 }
 
 .w-\[189px\] {
   width: 189px;
-}
-
-.w-\[196px\] {
-  width: 196px;
-}
-
-.w-\[242px\] {
-  width: 242px;
 }
 
 .w-\[30px\] {
@@ -1045,6 +1021,10 @@ video {
   --tw-text-opacity: 0.4;
 }
 
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .DarkroomMacbookPro14Desktop {
   background-image: url('../img/dr-bg.jpg');
   background-size: cover;
@@ -1074,7 +1054,10 @@ video {
 #chat_list {
   height: auto;
   position: relative;
-  padding: 11px 17px
+  padding: 11px 17px;
+  top: 66px;
+  height: calc(100% - 140px);
+  overflow-x: auto;
 }
 
 .ChatItem {
@@ -1100,7 +1083,6 @@ video {
 .ChatWindows {
   right: 30px;
   position: fixed;
-  left: inherit;
   bottom: 124px;
 }
 
@@ -1122,4 +1104,41 @@ video {
 .Footer {
   position: absolute;
   bottom: 15px;
+  width: 95%;
+}
+
+.Typing{
+  position: absolute;
+  left: 17px;
+  bottom: 80px;
+}
+
+.Typing:after {
+  content: '...';
+  animation: cursor-animation 1s infinite;
+  display: inline-block;
+}
+
+@keyframes typing-effect {
+  0% {
+    width: 0;
+  }
+
+  30% {
+    width: 60%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes cursor-animation {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }

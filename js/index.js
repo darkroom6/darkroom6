@@ -1,7 +1,5 @@
 let dataChat = [
-  { s: 'guest', m: 'K đang gặp H' },
-  { s: 'guest', m: 'K & H sẽ đến nhà ông Khê.' },
-  { s: 'me', m: 'Tôi muốn kết nối thử.' }
+  { s: 'guest', m: 'Tiền của tôi đâu?' }
 ]
 
 // Debounce function to introduce delay
@@ -35,12 +33,10 @@ function appendMessage(message, messageType) {
 // Function to handle keyup events globally
 function handleKeyUp(event) {
   if (event.keyCode === 39) { // add chat guest
-    debounce(() => appendMessage(dataChat.guest.shift(), 'guest'), 100)();
+    debounce(() => appendMessage(dataChat.shift().m, 'guest'), 100)();
   } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
     dataChat = [
-      { s: 'guest', m: 'K đang gặp H' },
-      { s: 'guest', m: 'K & H sẽ đến nhà ông Khê.' },
-      { s: 'me', m: 'Tôi muốn kết nối thử.' }
+      { s: 'guest', m: 'Tiền của tôi đâu?' },
     ]
     // Empty the ChatWindows
     document.querySelector('#chat_list').innerHTML = '';
