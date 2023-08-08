@@ -45,14 +45,6 @@ function handleKeyUp(event) {
       appendMessage(dataChat.shift().m, 'guest');
       document.querySelector('#typing').classList.add('hidden');
     }, 200)();
-
-
-    // } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
-    //   dataChat = [
-    //     { s: 'guest', m: 'Tiền của tôi đâu?' },
-    //   ]
-    //   // Empty the ChatWindows
-    //   document.querySelector('#chat_list').innerHTML = '';
   }
 }
 
@@ -72,7 +64,6 @@ function sendMyChatEnter(event) {
 function showChatWindow() {
   document.getElementById('NotificationNewMessFromBeboy').classList.remove('show');
   document.getElementById('chat_window').classList.add('show');
-
 }
 
 function hideChatWindow(onlyWindow) {
@@ -81,7 +72,6 @@ function hideChatWindow(onlyWindow) {
       document.getElementById('NotificationNewMessFromBeboy').classList.add('show');
     document.getElementById('chat_window').classList.remove('show');
   }
-
 }
 
 function scrollToEnd() {
@@ -100,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('chat_input').addEventListener('keyup', sendMyChatEnter);
   //
   document.getElementById('NotificationNewMessFromBeboy').addEventListener('click', showChatWindow);
-
+  //
   document.getElementById('close_chat_window').addEventListener('click', hideChatWindow(1));
   //
-  setTimeout(hideChatWindow(0), 1000)
+  setTimeout(hideChatWindow(0), 1000);
 });

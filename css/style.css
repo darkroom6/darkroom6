@@ -1107,7 +1107,7 @@ video {
 
 #chat_room {
   position: fixed;
-  right: 60px;
+  right: 30px;
   bottom: 20px;
   width: calc(100% - 120px);
   font-size: 14px;
