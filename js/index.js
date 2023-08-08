@@ -24,12 +24,18 @@ function appendMessage(message, messageType) {
       'ChatItem MyMessage h-[60px] pr-[30px] rounded-tl-[15px] rounded-tr-[15px] rounded-bl-[15px] border border-black border-opacity-50 justify-start items-center inline-flex';
     myMessage.innerHTML = `<div class="text-white text-base font-medium">${message}</div>`;
     chatWindow.appendChild(myMessage);
+    setTimeout(() => {
+      myMessage.classList.add('show');
+    }, 200);
   } else if (messageType === 'guest') {
     const guestMessage = document.createElement('div');
     guestMessage.className =
       'ChatItem GuestMessage h-[60px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex';
     guestMessage.innerHTML = `<div class="text-white text-base font-medium">${message}</div>`;
     chatWindow.appendChild(guestMessage);
+    setTimeout(() => {
+      guestMessage.classList.add('show');
+    }, 200);
   }
   scrollToEnd();
 }
@@ -64,6 +70,7 @@ function sendMyChatEnter(event) {
 function showChatWindow() {
   document.getElementById('NotificationNewMessFromBeboy').classList.remove('show');
   document.getElementById('chat_window').classList.add('show');
+  document.getElementById('be_btn').classList.add('active')
 }
 
 function hideChatWindow(onlyWindow) {
@@ -71,6 +78,8 @@ function hideChatWindow(onlyWindow) {
     if (!onlyWindow)
       document.getElementById('NotificationNewMessFromBeboy').classList.add('show');
     document.getElementById('chat_window').classList.remove('show');
+    document.getElementById('be_btn').classList.remove('active')
+
   }
 }
 
@@ -90,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('chat_input').addEventListener('keyup', sendMyChatEnter);
   //
   document.getElementById('NotificationNewMessFromBeboy').addEventListener('click', showChatWindow);
+
+  document.getElementById('be_btn').addEventListener('click', showChatWindow);
   //
   document.getElementById('close_chat_window').addEventListener('click', hideChatWindow(1));
   //

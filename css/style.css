@@ -1083,8 +1083,12 @@ video {
 }
 
 .ChatItem {
-  width: 100%;
   display: inline-block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ChatItem.show {
 }
 
 .ChatItem>div {
@@ -1193,12 +1197,12 @@ video {
   cursor: pointer;
 }
 
-.float-button{
+.float-button {
   display: flex;
   justify-content: end;
 }
 
-.float-button > div{
+.float-button>div {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -1210,12 +1214,12 @@ video {
   position: relative;
 }
 
-.float-button > div.active{
+.float-button>div.active {
   background-color: #FF537C;
   color: #000;
 }
 
-.float-button > div > span{
+.float-button>div>span {
   position: absolute;
   border-radius: 50%;
   background-color: #D3103F;
@@ -1223,18 +1227,26 @@ video {
   top: 0;
   right: 0;
   font-size: 9px;
+  display: flex;
   width: 16px;
   height: 16px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.gs-button{
+.float-button>div.active>span {
+  display: none;
+}
+
+.gs-button {
   color: #FF537C;
   border: 2px solid #FF537C;
   background-color: transparent;
 }
 
-.be-button{
+.be-button {
   background-color: transparent;
   margin-left: 10px;
+  border: 2px solid #FF537C;
+  color: #FF537C;
 }
