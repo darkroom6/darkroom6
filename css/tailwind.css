@@ -39,7 +39,7 @@
 #chat_list {
   height: auto;
   position: relative;
-  padding: 11px 36px;
+  padding: 11px 18px;
   top: 66px;
   height: calc(100% - 140px);
   overflow-y: scroll;
@@ -67,7 +67,7 @@
 .ChatWindows {
   right: 30px;
   position: fixed;
-  bottom: 124px;
+  bottom: 125px;
   overflow: hidden;
 }
 
@@ -90,6 +90,9 @@
 
 .ChatterName {
   font-size: 14px;
+  margin: 19px 0;
+  text-align: center;
+  font-weight: bold;
 }
 
 .Footer {
@@ -134,4 +137,24 @@
   50% {
     opacity: 1;
   }
+}
+
+#NotificationNewMessFromBeboy {
+  padding: 33px 75px;
+  position: absolute;
+  bottom: 125px;
+  cursor: pointer;
+}
+
+.needToHide {
+  transition: all ease .3s;
+  right: -1000px;
+}
+
+.needToHide.show {
+  right: 30px;
+}
+
+.UserInterfaceCancel {
+  cursor: pointer;
 }

@@ -13,7 +13,7 @@ function debounce(func, delay) {
 
 // Function to append messages to ChatWindows
 function appendMessage(message, messageType) {
-  if (!message) { 
+  if (!message) {
     return;
   }
   const chatWindow = document.querySelector('#chat_list');
@@ -47,12 +47,12 @@ function handleKeyUp(event) {
     }, 200)();
 
 
-  // } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
-  //   dataChat = [
-  //     { s: 'guest', m: 'Tiền của tôi đâu?' },
-  //   ]
-  //   // Empty the ChatWindows
-  //   document.querySelector('#chat_list').innerHTML = '';
+    // } else if (event.keyCode === 46 || event.keyCode === 8) {// delete
+    //   dataChat = [
+    //     { s: 'guest', m: 'Tiền của tôi đâu?' },
+    //   ]
+    //   // Empty the ChatWindows
+    //   document.querySelector('#chat_list').innerHTML = '';
   }
 }
 
@@ -69,6 +69,21 @@ function sendMyChatEnter(event) {
   }
 }
 
+function showChatWindow() {
+  document.getElementById('NotificationNewMessFromBeboy').classList.remove('show');
+  document.getElementById('chat_window').classList.add('show');
+
+}
+
+function hideChatWindow(onlyWindow) {
+  return () => {
+    if (!onlyWindow)
+      document.getElementById('NotificationNewMessFromBeboy').classList.add('show');
+    document.getElementById('chat_window').classList.remove('show');
+  }
+
+}
+
 function scrollToEnd() {
   const scrollableElement = document.getElementById('chat_list');
   scrollableElement.scrollTop = scrollableElement.scrollHeight;
@@ -79,9 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('done load');
   // Add event listener to the document for keyup events
   document.addEventListener('keyup', handleKeyUp);
-
   // Add event listener to the document for keyup events
   document.getElementById('send_chat').addEventListener('click', sendMyChat);
-
+  //
   document.getElementById('chat_input').addEventListener('keyup', sendMyChatEnter);
+  //
+  document.getElementById('NotificationNewMessFromBeboy').addEventListener('click', showChatWindow);
+
+  document.getElementById('close_chat_window').addEventListener('click', hideChatWindow(1));
+  //
+  setTimeout(hideChatWindow(0), 1000)
 });
