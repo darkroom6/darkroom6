@@ -72,7 +72,7 @@
 .ChatWindows {
   right: 30px;
   position: fixed;
-  bottom: 125px;
+  bottom: 100px;
   overflow: hidden;
 }
 
@@ -80,7 +80,6 @@
   position: fixed;
   right: 30px;
   bottom: 20px;
-  /* width: calc(100% - 120px); */
   font-size: 14px;
 }
 

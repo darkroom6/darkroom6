@@ -1106,7 +1106,7 @@ video {
 .ChatWindows {
   right: 30px;
   position: fixed;
-  bottom: 125px;
+  bottom: 100px;
   overflow: hidden;
 }
 
@@ -1114,7 +1114,6 @@ video {
   position: fixed;
   right: 30px;
   bottom: 20px;
-  /* width: calc(100% - 120px); */
   font-size: 14px;
 }
 
