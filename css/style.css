@@ -1110,7 +1110,7 @@ video {
   position: fixed;
   right: 30px;
   bottom: 20px;
-  width: calc(100% - 120px);
+  /* width: calc(100% - 120px); */
   font-size: 14px;
 }
 
@@ -1191,4 +1191,50 @@ video {
 
 .UserInterfaceCancel {
   cursor: pointer;
+}
+
+.float-button{
+  display: flex;
+  justify-content: end;
+}
+
+.float-button > div{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+}
+
+.float-button > div.active{
+  background-color: #FF537C;
+  color: #000;
+}
+
+.float-button > div > span{
+  position: absolute;
+  border-radius: 50%;
+  background-color: #D3103F;
+  color: #fff;
+  top: 0;
+  right: 0;
+  font-size: 9px;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+}
+
+.gs-button{
+  color: #FF537C;
+  border: 2px solid #FF537C;
+  background-color: transparent;
+}
+
+.be-button{
+  background-color: transparent;
+  margin-left: 10px;
 }
