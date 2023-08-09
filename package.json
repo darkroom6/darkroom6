@@ -8,7 +8,7 @@
     "autoprefixer": "postcss css/style.css -u autoprefixer --no-map -o css/style.css",
     "minify": "postcss css/style.css -u cssnano --no-map -o css/style.min.css",
     "build": "npm run tailwind && npm run autoprefixer",
-    "production": "npm run tailwind && npm run autoprefixer && npm run minify"
+    "production": "npm i postcss && npm run tailwind && npm run autoprefixer && npm run minify"
   },
   "repository": {
     "type": "git",
