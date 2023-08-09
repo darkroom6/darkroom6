@@ -1,17 +1,21 @@
 const chatMessagesDefault = [
   {
+    name: 'ms1',
     delay: 300, align: 'left',
     msg: "GS nhận được hàng rồi"
   },
   {
+    name: 'ms12',
     delay: 300, align: 'left',
     msg: "Nhưng"
   },
   {
+    name: 'ms13',
     delay: 300, align: 'left',
     msg: "Đừng có gặp riêng người của tôi nữa!"
   },
   {
+    name: 'ms14',
     delay: 300, align: 'left',
     msg: "Không là tôi huỷ kèo đó!"
   }
@@ -54,45 +58,35 @@ let chatMessages = [{
   msg: 'Gấp!'
 }];
 
-
-var chatDelay = 100;
-
+/////////////////
+/////////////////
+/////////////////
 // Function to append messages to ChatWindows
-function appendMessage(msg) {
+function appendMessage(msg, chatDelay = 100) {
   if (!msg) return;
-  msg.name = "ms" + +new Date();
-  var chatMessageList = document.querySelector('#chat_list .chat-message-list');
-  var msgname = "." + msg.name;
-  var msginner = ".messageinner-" + msg.name;
-  var spinner = ".sp-" + msg.name;
-
-  var chatListItem = document.createElement('li');
+  msg.name = msg.name || "ms" + +new Date();
+  const chatMessageList = document.querySelector('#chat_list .chat-message-list');
+  const msgname = "." + msg.name;
+  const msginner = ".messageinner-" + msg.name;
+  const chatListItem = document.createElement('li');
   chatListItem.className = "message-" + msg.align + " " + msg.name;
-  chatListItem.style.display = 'none';
-
-  var messageInnerDiv = document.createElement('div');
+  const messageInnerDiv = document.createElement('div');
   messageInnerDiv.className = "messageinner-" + msg.name;
-  messageInnerDiv.style.display = 'none';
-  var messageContent = "<span class='message-text'>" + msg.msg + "</span>";
+  const messageContent = "<span class='message-text'>" + msg.msg + "</span>";
   messageInnerDiv.innerHTML = messageContent;
-
   chatListItem.appendChild(messageInnerDiv);
   chatMessageList.appendChild(chatListItem);
 
-  fadeIn(document.querySelector(msgname), chatDelay);
-  // debounce(function () {
-  //   var msgElement = document.querySelector(msgname);
-  //   msgElement.style.display = 'block';
-  // }, chatDelay)();
+  setTimeout(function () {
+    document.querySelector(msgname).classList.add('fade-in');
+    onRowAdded();
+  }, chatDelay);
 
-  fadeIn(document.querySelector(msginner), chatDelay + msg.delay + 10);
-  // debounce(function () {
-  //   var msgInnerElement = document.querySelector(msginner);
-  //   msgInnerElement.style.display = 'block';
-  // }, chatDelay + msg.delay + 10)();
+  setTimeout(function () {
+    document.querySelector(msginner).classList.add('fade-in');
+    onRowAdded();
+  }, chatDelay + msg.delay + 10);
 
-  debounce(onRowAdded, chatDelay);
-  debounce(onRowAdded, chatDelay + msg.delay + 10)();
 }
 
 // Function to handle keyup events globally
@@ -101,15 +95,15 @@ function handleKeyUp(event) {
     sendMyChat();
   } else if (event.ctrlKey) {
     if (event.code === "KeyM") {
-      debounce(() => {
+      setTimeout(() => {
         document.querySelector('#typing').classList.remove('hidden')
-      }, 100)();
+      }, 100);
 
       const msg = chatMessages.shift();
-      debounce(() => {
+      setTimeout(() => {
         appendMessage(msg);
         document.querySelector('#typing').classList.add('hidden');
-      }, msg.typing ? 2000 : 100)();
+      }, msg.typing ? 2000 : 100);
     }
   }
 }
@@ -131,13 +125,6 @@ function onRowAdded() {
 }
 
 // Debounce function to introduce delay
-function debounce(func, delay) {
-  let timerId;
-  return function () {
-    clearTimeout(timerId);
-    timerId = setTimeout(func, delay);
-  };
-}
 
 function showChatWindow() {
   document.getElementById('NotificationNewMessFromBeboy').classList.remove('show');
@@ -154,23 +141,10 @@ function hideChatWindow(onlyWindow) {
 
   }
 }
-function fadeIn(element, duration = 600) {
-  element.style.display = '';
-  element.style.opacity = 0;
-  var last = +new Date();
-  var tick = function () {
-    element.style.opacity = +element.style.opacity + (new Date() - last) / duration;
-    last = +new Date();
-    if (+element.style.opacity < 1) {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-    }
-  };
-  tick();
-}
 
 function loadDefaultMsg() {
-  chatMessagesDefault?.forEach(msg => {
-    appendMessage(msg);
+  chatMessagesDefault?.forEach((msg, i) => {
+    appendMessage(msg, 110 + (i * 110));
   });
 }
 // Wait for the document to be fully loaded before adding the event listener
