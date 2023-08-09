@@ -1,61 +1,58 @@
 const chatMessagesDefault = [
   {
-    delay: 100, align: 'left',
+    delay: 300, align: 'left',
     msg: "GS nhận được hàng rồi"
   },
   {
-    delay: 100, align: 'left',
+    delay: 300, align: 'left',
     msg: "Nhưng"
   },
   {
-    delay: 100, align: 'left',
+    delay: 300, align: 'left',
     msg: "Đừng có gặp riêng người của tôi nữa!"
   },
   {
-    delay: 100, align: 'left',
+    delay: 300, align: 'left',
     msg: "Không là tôi huỷ kèo đó!"
   }
 ];
 
-let chatMessages =
-  [{
-    delay: 100, align: 'left',
-    msg: 'Phí môi giới của tôi tăng theo phí của V', typing: true
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Tôi cũng muốn có phần của tôi hôm nay'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Không, phần của tôi phải có đêm nay'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Lần này tôi cần tiền mặt'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Đâu rồi?'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Khi nào tôi có tiền?'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Không'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Tôi cần tiền mặt'
-  },
-  {
-    delay: 100, align: 'left',
-    msg: 'Gấp!'
-  }];
-
-
+let chatMessages = [{
+  delay: 300, align: 'left',
+  msg: 'Phí môi giới của tôi tăng theo phí của V', typing: true
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Tôi cũng muốn có phần của tôi hôm nay'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Không, phần của tôi phải có đêm nay'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Lần này tôi cần tiền mặt'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Đâu rồi?'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Khi nào tôi có tiền?'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Không'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Tôi cần tiền mặt'
+},
+{
+  delay: 300, align: 'left',
+  msg: 'Gấp!'
+}];
 
 
 var chatDelay = 100;
@@ -82,15 +79,17 @@ function appendMessage(msg) {
   chatListItem.appendChild(messageInnerDiv);
   chatMessageList.appendChild(chatListItem);
 
-  debounce(function () {
-    var msgElement = document.querySelector(msgname);
-    msgElement.style.display = 'block';
-  }, chatDelay)();
+  fadeIn(document.querySelector(msgname), chatDelay);
+  // debounce(function () {
+  //   var msgElement = document.querySelector(msgname);
+  //   msgElement.style.display = 'block';
+  // }, chatDelay)();
 
-  debounce(function () {
-    var msgInnerElement = document.querySelector(msginner);
-    msgInnerElement.style.display = 'block';
-  }, chatDelay + msg.delay + 10)();
+  fadeIn(document.querySelector(msginner), chatDelay + msg.delay + 10);
+  // debounce(function () {
+  //   var msgInnerElement = document.querySelector(msginner);
+  //   msgInnerElement.style.display = 'block';
+  // }, chatDelay + msg.delay + 10)();
 
   debounce(onRowAdded, chatDelay);
   debounce(onRowAdded, chatDelay + msg.delay + 10)();
@@ -106,8 +105,9 @@ function handleKeyUp(event) {
         document.querySelector('#typing').classList.remove('hidden')
       }, 100)();
 
+      const msg = chatMessages.shift();
       debounce(() => {
-        appendMessage(chatMessages.shift());
+        appendMessage(msg);
         document.querySelector('#typing').classList.add('hidden');
       }, msg.typing ? 2000 : 100)();
     }
@@ -154,6 +154,20 @@ function hideChatWindow(onlyWindow) {
 
   }
 }
+function fadeIn(element, duration = 600) {
+  element.style.display = '';
+  element.style.opacity = 0;
+  var last = +new Date();
+  var tick = function () {
+    element.style.opacity = +element.style.opacity + (new Date() - last) / duration;
+    last = +new Date();
+    if (+element.style.opacity < 1) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    }
+  };
+  tick();
+}
+
 function loadDefaultMsg() {
   chatMessagesDefault?.forEach(msg => {
     appendMessage(msg);
