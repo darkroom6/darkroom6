@@ -73,8 +73,8 @@
       </div>
 
     </div>
-    <div
-      class="ChatWindows w-[681px] h-[427px] right-[60px] top-[431px] absolute bg-black rounded-[15px] border border-rose-400">
+    <div id="chat_window"
+      class="ChatWindows needToHide w-[681px] h-[427px] bg-black rounded-[15px] border border-rose-400">
       <div
         class="Header w-[681px] h-[66px] left-0 top-0 absolute bg-orange-950 rounded-tl-[15px] rounded-tr-[15px] border border-rose-400">
         <div class="Beboy left-[73px] top-[23px] absolute text-rose-400 text-base font-bold uppercase tracking-wider">
@@ -82,28 +82,25 @@
         <div class="ChatSecureChat w-[30px] h-[30px] left-[34px] top-[18px] absolute">
           <img src="svg/chat-guard.svg" alt="">
         </div>
-        <div class="UserInterfaceCancel w-6 h-6 left-[632px] top-[21px] absolute">
+        <div id="close_chat_window" class="UserInterfaceCancel w-6 h-6 left-[632px] top-[21px] absolute">
           <img src="svg/close.svg" alt="">
         </div>
       </div>
+
       <div id="chat_list" class="ChatList">
-        <div
-          class="ChatItem GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">GS nhận được hàng rồi</div>
+        <div class="chat-container">
+
+          <div class="chat-listcontainer">
+
+            <ul class="chat-message-list">
+            </ul>
+
+          </div>
         </div>
-        <div
-          class="ChatItem GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">Nhưng</div>
-        </div>
-        <div
-          class="ChatItem GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">Đừng có gặp riêng người của tôi nữa!</div>
-        </div>
-        <div
-          class="ChatItem GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">Không là tôi huỷ kèo đó!</div>
-        </div>
+
+
       </div>
+
       <div id="typing" class="Typing hidden w-[189px] left-[23px] text-neutral-400 text-xs font-normal">Typing
       </div>
       <div
@@ -117,19 +114,21 @@
       </div>
 
     </div>
-    <div id="chat_room">
-      <div class="ChatRoom1 w-[60px] h-[60px]">
-        <div class="Rectangle2 right-0 w-[60px] h-[60px] top-0 bg-rose-400 rounded-[30px] border border-rose-400">
-          <div class="ChatterName Be top-[22px] text-center text-black text-sm font-bold uppercase tracking-[2.80px]">
-            BE</div>
-        </div>
-      </div>
 
-      <div class="ChatRoom2 right-[75px] w-[60px] h-[60px] top-0  ">
-        <div class="Rectangle2 w-[60px] h-[60px] top-0 rounded-[30px] border border-black border-opacity-40">
-          <div
-            class="ChatterName Gs top-[22px] text-center text-black text-opacity-40 text-sm font-bold uppercase tracking-[2.80px]">
-            GS</div>
+    <div id="NotificationNewMessFromBeboy"
+      class="needToHide bg-orange-950 rounded-[15px] border border-rose-400 justify-center items-center inline-flex">
+      <div class="CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]">Có tin nhắn mới của
+        Beboy</div>
+    </div>
+
+    <div id="chat_room">
+      <div class="float-button">
+        <div class="gs-button">
+          <p>GS</p>
+        </div>
+        <div id="be_btn" class="be-button">
+          <p>BE</p>
+          <span>2</span>
         </div>
       </div>
     </div>

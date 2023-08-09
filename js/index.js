@@ -1,6 +1,103 @@
-let dataChat = [
-  { s: 'guest', m: 'Tiền của tôi đâu?' }
-]
+const chatMessagesDefault = [{
+  msg: "K đang gặp H.",
+  delay: 100,
+  align: "left"
+}, {
+  msg: "K & H sẽ đến nhà ông Khê.",
+  delay: 100,
+  align: "left"
+}];
+
+let chatMessages = [{
+  msg: "Tiền của tôi đâu?",
+  delay: 100,
+  align: "left",
+  typing: 1
+}];
+
+/*let chatMessages = [
+  { s: 'guest', m: 'Phí môi giới của tôi tăng theo phí của V', typing: true },
+  { s: 'guest', m: 'Tôi cũng muốn có phần của tôi hôm nay' },
+  { s: 'guest', m: 'Không, phần của tôi phải có đêm nay' },
+  { s: 'guest', m: 'Lần này tôi cần tiền mặt' },
+  { s: 'guest', m: 'Đâu rồi?' },
+  { s: 'guest', m: 'Khi nào tôi có tiền?' },
+  { s: 'guest', m: 'Không' },
+  { s: 'guest', m: 'Tôi cần tiền mặt' },
+  { s: 'guest', m: 'Gấp!' },
+]*/
+
+var chatDelay = 100;
+
+// Function to append messages to ChatWindows
+function appendMessage(msg) {
+  if (!msg) return;
+  msg.name = "ms" + +new Date();
+  var chatMessageList = document.querySelector('#chat_list .chat-message-list');
+  var msgname = "." + msg.name;
+  var msginner = ".messageinner-" + msg.name;
+  var spinner = ".sp-" + msg.name;
+
+  var chatListItem = document.createElement('li');
+  chatListItem.className = "message-" + msg.align + " " + msg.name;
+  chatListItem.style.display = 'none';
+
+  var messageInnerDiv = document.createElement('div');
+  messageInnerDiv.className = "messageinner-" + msg.name;
+  messageInnerDiv.style.display = 'none';
+  var messageContent = "<span class='message-text'>" + msg.msg + "</span>";
+  messageInnerDiv.innerHTML = messageContent;
+
+  chatListItem.appendChild(messageInnerDiv);
+  chatMessageList.appendChild(chatListItem);
+
+  debounce(function () {
+    var msgElement = document.querySelector(msgname);
+    msgElement.style.display = 'block';
+  }, chatDelay)();
+
+  debounce(function () {
+    var msgInnerElement = document.querySelector(msginner);
+    msgInnerElement.style.display = 'block';
+  }, chatDelay + msg.delay + 10)();
+
+  debounce(onRowAdded, chatDelay);
+  debounce(onRowAdded, chatDelay + msg.delay + 10)();
+}
+
+// Function to handle keyup events globally
+function handleKeyUp(event) {
+  if (event.keyCode === 13) {
+    sendMyChat();
+  } else if (event.ctrlKey) {
+    if (event.code === "KeyM") {
+      debounce(() => {
+        document.querySelector('#typing').classList.remove('hidden')
+      }, 100)();
+
+      debounce(() => {
+        appendMessage(chatMessages.shift());
+        document.querySelector('#typing').classList.add('hidden');
+      }, msg.typing ? 2000 : 100)();
+    }
+  }
+}
+
+// Function to handle keyup events globally
+function sendMyChat() {
+  appendMessage({
+    msg: document.getElementById('chat_input').value,
+    delay: 100,
+    align: "right"
+  });
+  document.getElementById('chat_input').value = '';
+}
+
+
+function onRowAdded() {
+  var chatContainer = document.querySelector('#chat_list .chat-container');
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
 
 // Debounce function to introduce delay
 function debounce(func, delay) {
@@ -9,62 +106,6 @@ function debounce(func, delay) {
     clearTimeout(timerId);
     timerId = setTimeout(func, delay);
   };
-}
-
-// Function to append messages to ChatWindows
-function appendMessage(message, messageType) {
-  if (!message) {
-    return;
-  }
-  const chatWindow = document.querySelector('#chat_list');
-
-  if (messageType === 'mine') {
-    const myMessage = document.createElement('div');
-    myMessage.className =
-      'ChatItem MyMessage h-[60px] pr-[30px] rounded-tl-[15px] rounded-tr-[15px] rounded-bl-[15px] border border-black border-opacity-50 justify-start items-center inline-flex';
-    myMessage.innerHTML = `<div class="text-white text-base font-medium">${message}</div>`;
-    chatWindow.appendChild(myMessage);
-    setTimeout(() => {
-      myMessage.classList.add('show');
-    }, 200);
-  } else if (messageType === 'guest') {
-    const guestMessage = document.createElement('div');
-    guestMessage.className =
-      'ChatItem GuestMessage h-[60px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex';
-    guestMessage.innerHTML = `<div class="text-white text-base font-medium">${message}</div>`;
-    chatWindow.appendChild(guestMessage);
-    setTimeout(() => {
-      guestMessage.classList.add('show');
-    }, 200);
-  }
-  scrollToEnd();
-}
-
-// Function to handle keyup events globally
-function handleKeyUp(event) {
-  if (event.keyCode === 39) { // add chat guest
-    debounce(() => {
-      document.querySelector('#typing').classList.remove('hidden')
-    }, 100)();
-
-    debounce(() => {
-      appendMessage(dataChat.shift().m, 'guest');
-      document.querySelector('#typing').classList.add('hidden');
-    }, 200)();
-  }
-}
-
-// Function to handle keyup events globally
-function sendMyChat() {
-  appendMessage(document.getElementById('chat_input').value, 'mine');
-  document.getElementById('chat_input').value = '';
-}
-
-// Function to handle keyup events globally
-function sendMyChatEnter(event) {
-  if (event.keyCode === 13) {
-    sendMyChat();
-  }
 }
 
 function showChatWindow() {
@@ -82,24 +123,21 @@ function hideChatWindow(onlyWindow) {
 
   }
 }
-
-function scrollToEnd() {
-  const scrollableElement = document.getElementById('chat_list');
-  scrollableElement.scrollTop = scrollableElement.scrollHeight;
+function loadDefaultMsg() {
+  chatMessagesDefault?.forEach(msg => {
+    appendMessage(msg);
+  });
 }
-
 // Wait for the document to be fully loaded before adding the event listener
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('done load');
+  loadDefaultMsg();
   // Add event listener to the document for keyup events
-  document.addEventListener('keyup', handleKeyUp);
+  document.getElementById('chat_input').addEventListener('keyup', handleKeyUp);
   // Add event listener to the document for keyup events
   document.getElementById('send_chat').addEventListener('click', sendMyChat);
   //
-  document.getElementById('chat_input').addEventListener('keyup', sendMyChatEnter);
-  //
   document.getElementById('NotificationNewMessFromBeboy').addEventListener('click', showChatWindow);
-
+  //
   document.getElementById('be_btn').addEventListener('click', showChatWindow);
   //
   document.getElementById('close_chat_window').addEventListener('click', hideChatWindow(1));

@@ -86,16 +86,21 @@
           <img src="svg/close.svg" alt="">
         </div>
       </div>
+
       <div id="chat_list" class="ChatList">
-        <div
-          class="ChatItem show GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">K đang gặp H</div>
+        <div class="chat-container">
+
+          <div class="chat-listcontainer">
+
+            <ul class="chat-message-list">
+            </ul>
+
+          </div>
         </div>
-        <div
-          class="ChatItem show  GuestMessage rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] border border-black border-opacity-60 justify-center items-center inline-flex">
-          <div class="text-white text-base font-medium">K &amp; H sẽ đến nhà ông Khê.</div>
-        </div>
+
+
       </div>
+
       <div id="typing" class="Typing hidden w-[189px] left-[23px] text-neutral-400 text-xs font-normal">Typing
       </div>
       <div
@@ -112,10 +117,11 @@
 
     <div id="NotificationNewMessFromBeboy"
       class="needToHide bg-orange-950 rounded-[15px] border border-rose-400 justify-center items-center inline-flex">
-      <div class="CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]">Có tin nhắn mới của Beboy</div>
+      <div class="CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]">Có tin nhắn mới của
+        Beboy</div>
     </div>
 
-    <div id="chat_room">      
+    <div id="chat_room">
       <div class="float-button">
         <div class="gs-button">
           <p>GS</p>

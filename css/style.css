@@ -662,20 +662,12 @@ video {
   left: 9px;
 }
 
-.right-0 {
-  right: 0px;
-}
-
 .right-\[100px\] {
   right: 100px;
 }
 
 .right-\[60px\] {
   right: 60px;
-}
-
-.right-\[75px\] {
-  right: 75px;
 }
 
 .top-0 {
@@ -716,10 +708,6 @@ video {
 
 .top-\[33px\] {
   top: 33px;
-}
-
-.top-\[431px\] {
-  top: 431px;
 }
 
 .top-\[466px\] {
@@ -1072,14 +1060,11 @@ video {
 }
 
 #chat_list {
-  height: auto;
   position: relative;
-  padding: 11px 18px;
   top: 66px;
   height: calc(100% - 140px);
-  overflow-y: scroll;
-  width: calc(100% + 18px);
   overflow-x: hidden;
+  padding: 11px 0;
 }
 
 .ChatItem {
@@ -1198,7 +1183,7 @@ video {
 
 .float-button {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .float-button>div {
@@ -1248,4 +1233,113 @@ video {
   margin-left: 10px;
   border: 2px solid #FF537C;
   color: #FF537C;
+}
+
+.chat ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.message-left {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.message-left .message-text {
+  max-width: 80%;
+  display: inline-block;
+  padding: 15px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 100;
+  line-height: 1.5em;
+  border-radius: 0px 15px 15px 15px;
+  border: 1.3px solid #fff;
+}
+
+.message-right {
+  text-align: right;
+  margin-bottom: 16px;
+}
+
+.message-right .message-text {
+  border-radius: 15px 15px 0px 15px;
+  border: 1.6px solid #FF537C;
+  display: inline-block;
+  padding: 15px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.5em;
+  font-weight: 100;
+  text-align: left;
+}
+
+.chat {
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.chat-container {
+  height: 100%;
+  overflow-y: scroll;
+  width: calc(100% + 18px);
+  padding: 0 16px;
+}
+
+.spinme-right {
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 14px;
+  border-radius: 30px;
+  line-height: 1.25em;
+  font-weight: 100;
+  opacity: 0.2;
+}
+
+.spinme-left {
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 14px;
+  color: #ccc;
+  border-radius: 30px;
+  line-height: 1.25em;
+  font-weight: 100;
+  opacity: 0.2;
+}
+
+.spinner {
+  margin: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.spinner>div {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  background: rgba(0, 0, 0, 1);
+}
+
+.spinner .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1.0);
+  }
 }
