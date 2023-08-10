@@ -1166,6 +1166,11 @@ video {
   cursor: pointer;
 }
 
+#notification_container.nd {
+  bottom: inherit;
+  top: 60px;
+}
+
 .needToHide {
   transition: all ease .3s;
   right: -1000px;
@@ -1241,13 +1246,13 @@ video {
 }
 
 #chat_list .chat-message-list>li,
-#chat_list .chat-message-list>li>div{
+#chat_list .chat-message-list>li>div {
   transition: all ease .6s;
   opacity: 0;
 }
 
 #chat_list .chat-message-list>li.fade-in,
-#chat_list .chat-message-list>li>div.fade-in{
+#chat_list .chat-message-list>li>div.fade-in {
   opacity: 1;
 }
 
