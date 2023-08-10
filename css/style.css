@@ -762,12 +762,12 @@ video {
   height: 30px;
 }
 
-.h-\[427px\] {
-  height: 427px;
-}
-
 .h-\[541px\] {
   height: 541px;
+}
+
+.h-\[600px\] {
+  height: 600px;
 }
 
 .h-\[60px\] {
@@ -1117,7 +1117,7 @@ video {
 
 .Typing {
   position: absolute;
-  left: 17px;
+  left: 25px;
   bottom: 80px;
 }
 
