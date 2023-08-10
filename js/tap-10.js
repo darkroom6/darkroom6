@@ -146,7 +146,7 @@ function hideChatWindow(onlyWindow) {
 function showNoti(messageContent) {
   const noti = document.createElement('div');
   noti.className = "CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]";
-  noti.appendChild(messageContent);
+  noti.innerText = messageContent;
   document.getElementById('notification_container').appendChild(noti);
 }
 

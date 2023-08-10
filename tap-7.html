@@ -77,11 +77,14 @@
       class="ChatWindows needToHide w-[681px] h-[600px] bg-black rounded-[15px] border border-rose-400">
       <div
         class="Header w-[681px] h-[66px] left-0 top-0 absolute bg-orange-950 rounded-tl-[15px] rounded-tr-[15px] border border-rose-400">
-        <div class="Beboy left-[73px] top-[23px] absolute text-rose-400 text-base font-bold uppercase tracking-wider">
-          Beboy</div>
-        <div class="ChatSecureChat w-[30px] h-[30px] left-[34px] top-[18px] absolute">
+
+        <div class="ChatSecureChat w-[30px] h-[30px] left-[15px] top-[18px] absolute">
           <img src="svg/chat-guard.svg" alt="">
         </div>
+
+        <div class="Beboy left-[60px] top-[23px] absolute text-rose-400 text-base font-bold uppercase tracking-wider">
+          Beboy</div>
+
         <div id="close_chat_window" class="UserInterfaceCancel w-6 h-6 left-[632px] top-[21px] absolute">
           <img src="svg/close.svg" alt="">
         </div>
@@ -108,7 +111,7 @@
         <div class="ChatText"><input id="chat_input" type="text" placeholder="Type here"></div>
         <div class="UserInterfacePaperPlane w-6 h-6 relative flex-col justify-start items-start flex">
           <div class="UserInterfacePaperPlane w-6 h-6 absolute">
-            <span id="send_chat"><img src="svg/send.svg" alt=""></span>
+            <span id="send_chat" class="cursor-pointer"><img src="svg/send.svg" alt=""></span>
           </div>
         </div>
       </div>

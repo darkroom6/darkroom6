@@ -642,6 +642,10 @@ video {
   left: 5px;
 }
 
+.left-\[60px\] {
+  left: 60px;
+}
+
 .left-\[632px\] {
   left: 632px;
 }
