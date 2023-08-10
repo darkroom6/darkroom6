@@ -68,13 +68,13 @@
 .ChatWindows {
   right: 40px;
   position: fixed;
-  bottom: 100px;
+  bottom: 120px;
   overflow: hidden;
 }
 
 #chat_room {
   position: fixed;
-  right: 40;
+  right: 40px;
   bottom: 40px;
   font-size: 14px;
 }
