@@ -946,11 +946,6 @@ video {
   text-align: center;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-\[10px\] {
   font-size: 10px;
 }
@@ -984,10 +979,6 @@ video {
 
 .uppercase {
   text-transform: uppercase;
-}
-
-.leading-\[33\.60px\] {
-  line-height: 33.60px;
 }
 
 .tracking-\[2\.80px\] {
@@ -1089,7 +1080,7 @@ video {
 }
 
 .ChatWindows {
-  right: 30px;
+  right: 40px;
   position: fixed;
   bottom: 100px;
   overflow: hidden;
@@ -1097,8 +1088,8 @@ video {
 
 #chat_room {
   position: fixed;
-  right: 30px;
-  bottom: 20px;
+  right: 40;
+  bottom: 40px;
   font-size: 14px;
 }
 
@@ -1161,7 +1152,7 @@ video {
   }
 }
 
-#NotificationNewMessFromBeboy {
+#notification_container {
   padding: 33px 75px;
   position: absolute;
   bottom: 125px;
@@ -1174,7 +1165,7 @@ video {
 }
 
 .needToHide.show {
-  right: 30px;
+  right: 50px;
 }
 
 .UserInterfaceCancel {

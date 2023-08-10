@@ -66,7 +66,7 @@
 }
 
 .ChatWindows {
-  right: 30px;
+  right: 40px;
   position: fixed;
   bottom: 100px;
   overflow: hidden;
@@ -74,8 +74,8 @@
 
 #chat_room {
   position: fixed;
-  right: 30px;
-  bottom: 20px;
+  right: 40;
+  bottom: 40px;
   font-size: 14px;
 }
 
@@ -139,7 +139,7 @@
   }
 }
 
-#NotificationNewMessFromBeboy {
+#notification_container {
   padding: 33px 75px;
   position: absolute;
   bottom: 125px;
@@ -152,7 +152,7 @@
 }
 
 .needToHide.show {
-  right: 30px;
+  right: 50px;
 }
 
 .UserInterfaceCancel {

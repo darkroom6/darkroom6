@@ -120,26 +120,34 @@ function sendMyChat() {
 
 
 function onRowAdded() {
-  var chatContainer = document.querySelector('#chat_list .chat-container');
+  const chatContainer = document.querySelector('#chat_list .chat-container');
   chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 // Debounce function to introduce delay
 
 function showChatWindow() {
-  document.getElementById('NotificationNewMessFromBeboy').classList.remove('show');
+  document.getElementById('notification_container').classList.remove('show');
   document.getElementById('chat_window').classList.add('show');
   document.getElementById('be_btn').classList.add('active')
 }
 
 function hideChatWindow(onlyWindow) {
   return () => {
-    if (!onlyWindow)
-      document.getElementById('NotificationNewMessFromBeboy').classList.add('show');
+    if (!onlyWindow) {
+      const messageContent = "Có tin nhắn mới của Beboy";
+      showNoti(messageContent);
+      document.getElementById('notification_container').classList.add('show');
+    }
     document.getElementById('chat_window').classList.remove('show');
     document.getElementById('be_btn').classList.remove('active')
-
   }
+}
+function showNoti(messageContent) {
+  const noti = document.createElement('div');
+  messageInnerDiv.className = "CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]";
+  noti.appendChild(messageContent);
+  document.getElementById('notification_container').appendChild(noti);
 }
 
 function loadDefaultMsg() {
@@ -155,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add event listener to the document for keyup events
   document.getElementById('send_chat').addEventListener('click', sendMyChat);
   //
-  document.getElementById('NotificationNewMessFromBeboy').addEventListener('click', showChatWindow);
+  document.getElementById('notification_container').addEventListener('click', showChatWindow);
   //
   document.getElementById('be_btn').addEventListener('click', showChatWindow);
   //
