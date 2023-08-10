@@ -15,7 +15,7 @@ const ChatModule = (function () {
       const msgname = "." + msg.name;
       const msginner = ".messageinner-" + msg.name;
       const chatListItem = document.createElement('li');
-      chatListItem.className = "message-" + msg.align + " " + msg.name;
+      chatListItem.className = "message-" + msg.align + " " + msg.name + (msg.icon ? ' icon' : '');
       const messageInnerDiv = document.createElement('div');
       messageInnerDiv.className = "messageinner-" + msg.name;
       const messageContent = "<span class='message-text'>" + msg.msg + "</span>";

@@ -1256,6 +1256,12 @@ video {
   opacity: 1;
 }
 
+#chat_list .chat-message-list>li.icon .message-text{
+  border:none;
+  font-size:30px;
+  padding:5px;
+}
+
 .message-left {
   text-align: left;
   margin-bottom: 10px;
