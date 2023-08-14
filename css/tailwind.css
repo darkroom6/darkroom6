@@ -217,6 +217,7 @@
   border: 2px solid #FF537C;
   color: #FF537C;
 }
+
 .chat ul {
   margin: 0px;
   padding: 0px;
@@ -234,10 +235,8 @@
   opacity: 1;
 }
 
-#chat_list .chat-message-list>li.icon .message-text{
-  border:none;
-  font-size:32px;
-  padding:5px;
+#chat_list .chat-message-list>li.icon .message-text {
+  font-size: 20px;
 }
 
 .message-left {

@@ -1,3 +1,5 @@
+window._q = (q) => document.querySelector(q);
+
 const ChatModule = (function () {
   let instance;
   function init(chatMessagesDefault, chatMessages, notiContent) {
@@ -11,7 +13,7 @@ const ChatModule = (function () {
     chatModule.appendMessage = function (msg, chatDelay = 100) {
       if (!msg) return;
       msg.name = msg.name || "ms" + +new Date();
-      const chatMessageList = document.querySelector('#chat_list .chat-message-list');
+      const chatMessageList = _q('#chat_list .chat-message-list');
       const msgname = "." + msg.name;
       const msginner = ".messageinner-" + msg.name;
       const chatListItem = document.createElement('li');
@@ -24,12 +26,12 @@ const ChatModule = (function () {
       chatMessageList.appendChild(chatListItem);
 
       setTimeout(function () {
-        document.querySelector(msgname).classList.add('fade-in');
+        _q(msgname).classList.add('fade-in');
         chatModule.onRowAdded();
       }, chatDelay);
 
       setTimeout(function () {
-        document.querySelector(msginner).classList.add('fade-in');
+        _q(msginner).classList.add('fade-in');
         chatModule.onRowAdded();
       }, chatDelay + msg.delay + 10);
     };
@@ -37,50 +39,56 @@ const ChatModule = (function () {
     chatModule.handleKeyUp = function (event) {
       if (event.keyCode === 13) {
         chatModule.sendMyChat();
+      } else if (event.keyCode === 40) {
+        chatModule.showNextChat();
       } else if (event.ctrlKey) {
         if (event.code === "KeyM") {
-          document.querySelector('#typing').classList.remove('hidden');
-
-          const msg = chatModule.chatMessages.shift();
-          setTimeout(() => {
-            chatModule.appendMessage(msg);
-            document.querySelector('#typing').classList.add('hidden');
-          }, msg?.typing ? 2000 : 100);
-
+          chatModule.showNextChat();
         } else if (event.code === "KeyN") {
           chatModule.showNoti(chatModule.notiContent[1], 'nd');
         }
       }
     };
+    chatModule.showNextChat = () => {
+      _q('#typing').classList.remove('hidden');
+      const msg = chatModule.chatMessages.shift();
+      setTimeout(() => {
+        chatModule.appendMessage(msg);
+        _q('#typing').classList.add('hidden');
+      }, msg?.typing ? 2000 : 100);
 
-    chatModule.sendMyChat = function () {
+    }
+
+    chatModule.sendMyChat = () => {
       chatModule.appendMessage({
-        msg: document.getElementById('chat_input').value,
+        msg: _q('#chat_input').value,
         delay: 100,
         align: "right"
       });
-      document.getElementById('chat_input').value = '';
+      _q('#chat_input').value = '';
     };
 
-    chatModule.onRowAdded = function () {
-      const chatContainer = document.querySelector('#chat_list .chat-container');
+    chatModule.onRowAdded = () => {
+      const chatContainer = _q('#chat_list .chat-container');
       chatContainer.scrollTop = chatContainer.scrollHeight;
     };
 
-    chatModule.showChatWindow = function () {
-      document.getElementById('notification_container').classList.remove('show');
-      document.getElementById('chat_window').classList.add('show');
-      document.getElementById('be_btn').classList.add('active');
+    chatModule.showChatWindow = () => {
+      _q('#notification_container').classList.remove('show');
+      _q('#chat_window').classList.add('show');
+      _q('#be_btn').classList.add('active');
+      _q('#chat_input').focus();
+
     };
 
     chatModule.hideChatWindow = function (onlyWindow) {
       return function () {
         if (!onlyWindow) {
           chatModule.showNoti(chatModule.notiContent[0]);
-          document.getElementById('notification_container').classList.add('show');
+          _q('#notification_container').classList.add('show');
         }
-        document.getElementById('chat_window').classList.remove('show');
-        document.getElementById('be_btn').classList.remove('active');
+        _q('#chat_window').classList.remove('show');
+        _q('#be_btn').classList.remove('active');
       };
     };
 
@@ -88,42 +96,42 @@ const ChatModule = (function () {
       const noti = document.createElement('div');
       noti.className = "CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]";
       noti.innerText = notiContent;
-      document.getElementById('notification_container').innerHTML = '';
-      document.getElementById('notification_container').appendChild(noti);
-      document.getElementById('notification_container').classList.add('show', clsName);
+      _q('#notification_container').innerHTML = '';
+      _q('#notification_container').appendChild(noti);
+      _q('#notification_container').classList.add('show', clsName);
       if (clsName) {
         setTimeout(() => {
-          document.getElementById('notification_container').classList.remove('show');
+          _q('#notification_container').classList.remove('show');
         }, 5e3);
       }
     };
 
-    chatModule.loadDefaultMsg = function () {
+    chatModule.loadDefaultMsg = () => {
       chatModule.chatMessagesDefault?.forEach((msg, i) => {
         chatModule.appendMessage(msg, 110 + (i * 110));
       });
     };
 
-    chatModule.onLoad = function () {
+    chatModule.onLoad = () => {
       chatModule.loadDefaultMsg();
       // Add event listener to the document for keyup events
-      document.getElementById('chat_input').addEventListener('keyup', function (event) {
+      _q('#chat_input').addEventListener('keyup', function (event) {
         chatModule.handleKeyUp(event);
       });
       // Add event listener to the document for keyup events
-      document.getElementById('send_chat').addEventListener('click', function () {
+      _q('#send_chat').addEventListener('click', function () {
         chatModule.sendMyChat();
       });
       //
-      document.getElementById('notification_container').addEventListener('click', function () {
+      _q('#notification_container').addEventListener('click', function () {
         chatModule.showChatWindow();
       });
       //
-      document.getElementById('be_btn').addEventListener('click', function () {
+      _q('#be_btn').addEventListener('click', function () {
         chatModule.showChatWindow();
       });
       //
-      document.getElementById('close_chat_window').addEventListener('click', function () {
+      _q('#close_chat_window').addEventListener('click', function () {
         chatModule.hideChatWindow(1)();
       });
       //
