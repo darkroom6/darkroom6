@@ -7,7 +7,7 @@ generate_ipv4() {
 
 # Function to generate a random IPv6 address
 generate_ipv6() {
-    printf "2001:%04x:%04x:%04x:%04x:%04x:%04x:%04x\n" \
+    echo "2001:%04x:%04x:%04x:%04x:%04x:%04x:%04x" \
     $((RANDOM % 65536)) $((RANDOM % 65536)) $((RANDOM % 65536)) $((RANDOM % 65536)) \
     $((RANDOM % 65536)) $((RANDOM % 65536)) $((RANDOM % 65536)) $((RANDOM % 65536))
 }
@@ -30,9 +30,10 @@ progress_bar() {
     local bar=$(printf "%-${width}s" "")
     printf "\r[%-${width}s] %d%%" "${bar// /#}" "$progress"
 }
+
 # Ask the user to choose an option
 echo "Choose an option:"
-echo "1. IP INSPECTOR"
+echo "1. REROOT"
 echo "2. BACKUP"
 read option
 
@@ -51,9 +52,9 @@ case $option in
         ;;
 esac
 
-# Main loop to print 400,000 random IPs
+# Main loop to print random IPs
 declare -a ips
-total_ips=400
+total_ips=198
 progress_step_10=$((total_ips / 10))
 progress_step_50=$((total_ips / 2))
 progress_step_70=$((total_ips * 7 / 10))
@@ -77,12 +78,16 @@ for ((i = 1; i <= total_ips; i++)); do
     sleep_time=$(generate_sleep_time)
 
     # Convert milliseconds to seconds for the sleep command
-    sleep_seconds=$(bc <<<"scale=3; $sleep_time / 1000")
+    sleep_seconds=$(bc <<<"scale=3; $sleep_time / 102")
 
     # Print IPs in five columns
-    if ((i % 5 == 0)); then
+    if ((i % 3 == 0)); then
         ips[4]=${ips[0]}
         print_ips
+        printf "%s\n" "========================================================================================================="
+        printf "%s\n" "#                                       IP DELETED SUCCESSFULLY!                                         #"
+        printf "%s\n" "========================================================================================================="
+
         unset ips
     else
         ips[$((i % 5))]=${ips[0]}

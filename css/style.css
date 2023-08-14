@@ -1258,7 +1258,7 @@ video {
 
 #chat_list .chat-message-list>li.icon .message-text{
   border:none;
-  font-size:30px;
+  font-size:32px;
   padding:5px;
 }
 
@@ -1306,7 +1306,7 @@ video {
   height: 100%;
   overflow-y: scroll;
   width: calc(100% + 18px);
-  padding: 11px 16px;
+  padding: 11px 32px 11px 16px;
 }
 
 .spinme-right {
