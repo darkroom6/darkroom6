@@ -158,7 +158,17 @@ case $option in
         ip_inspector
         ;;
     2)
-        ip_delete
+        echo "Are you sure to delete? (Y/n)"
+        read option1
+
+        case $option1 in
+          'Y' | 'y')
+            ip_delete
+            ;;
+          *)
+            echo "Operation canceled."
+            ;;
+        esac
         ;;
     3)  
         python3 malware_scanner.py
