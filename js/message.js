@@ -2,13 +2,8 @@ window._q = (q) => document.querySelector(q);
 
 const ChatModule = (function () {
   let instance;
-  function init({ chatMessagesDefault, chatMessages, notiContent, chatTo }) {
-    let _chat = {
-      chatMessagesDefault,
-      chatMessages,
-      notiContent,
-      chatTo
-    };
+  function init(input) {
+    let _chat = input;
 
 
     _chat.appendMessage = function (msg, chatDelay = 100) {
@@ -82,14 +77,9 @@ const ChatModule = (function () {
 
     };
 
-    _chat.showChatWindow = function () {
-      _q('#chat_window').classList.add('show');
-      _q('#be_btn').classList.add('active');
-    };
-
     _chat.hideChatWindow = function () {
       _q('#chat_window').classList.remove('show');
-      _q('#be_btn').classList.remove('active');
+      _q(_chat.activeSender).classList.remove('active');
     };
 
     _chat.showDefaultNoti = () => {
@@ -140,7 +130,7 @@ const ChatModule = (function () {
         _chat.showChatWindow();
       });
       //
-      _q('#be_btn').addEventListener('click', function () {
+      _q(_chat.activeSender).addEventListener('click', function () {
         _chat.showChatWindow();
       });
       //
