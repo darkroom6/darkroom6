@@ -2,11 +2,12 @@ window._q = (q) => document.querySelector(q);
 
 const ChatModule = (function () {
   let instance;
-  function init(chatMessagesDefault, chatMessages, notiContent) {
+  function init({ chatMessagesDefault, chatMessages, notiContent, chatTo }) {
     let chatModule = {
       chatMessagesDefault,
       chatMessages,
-      notiContent
+      notiContent,
+      chatTo
     };
 
 
@@ -17,7 +18,7 @@ const ChatModule = (function () {
       const msgname = "." + msg.name;
       const msginner = ".messageinner-" + msg.name;
       const chatListItem = document.createElement('li');
-      chatListItem.className = "message-" + msg.align + " " + msg.name + (msg.icon ? ' icon' : '');
+      chatListItem.className = "message-" + (msg.align || 'left') + " " + msg.name + (msg.icon ? ' icon' : '');
       const messageInnerDiv = document.createElement('div');
       messageInnerDiv.className = "messageinner-" + msg.name;
       const messageContent = "<span class='message-text'>" + msg.msg + "</span>";
@@ -33,7 +34,7 @@ const ChatModule = (function () {
       setTimeout(function () {
         _q(msginner).classList.add('fade-in');
         chatModule.onRowAdded();
-      }, chatDelay + msg.delay + 10);
+      }, chatDelay + (msg.delay || 100) + 10);
     };
 
     chatModule.handleKeyUp = function (event) {
@@ -107,9 +108,14 @@ const ChatModule = (function () {
     };
 
     chatModule.loadDefaultMsg = () => {
+      // 1
       chatModule.chatMessagesDefault?.forEach((msg, i) => {
         chatModule.appendMessage(msg, 110 + (i * 110));
       });
+      // 2 
+      if (chatModule.chatTo) {
+        _q('#chat_to').innerText = chatModule.chatTo;
+      }
     };
 
     chatModule.onLoad = () => {

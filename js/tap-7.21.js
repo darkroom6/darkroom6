@@ -35,6 +35,6 @@ let chatMessages = [{
 },
 ];
 const notiContent = ["Có tin nhắn mới của Beboy", "BeBoy muốn kết nối với bạn."];
-const chatModule = ChatModule.getInstance(chatMessagesDefault, chatMessages, notiContent);
+const chatModule = ChatModule.getInstance({chatMessagesDefault, chatMessages, notiContent});
 // Wait for the document to be fully loaded before adding the event listener
 document.addEventListener('DOMContentLoaded', chatModule.onLoad);
