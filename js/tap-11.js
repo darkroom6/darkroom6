@@ -18,7 +18,7 @@ let chatMessages = [{
   typing: true,
   msg: "Tôi đang sửa lại nội dung trị liệu cho Hoàng"
 }, {
-  msg: "Khi nào có thể cho Hoàng liều trị liệu mới",
+  msg: "Khi nào có thể cho Hoàng liều trị liệu mới", typing: 1
 }, {
   msg: "Ta đã tính trước trường hợp này mà?",
 }, {

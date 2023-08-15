@@ -1,4 +1,7 @@
 window._q = (q) => document.querySelector(q);
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 const ChatModule = (function () {
   let instance;
@@ -51,7 +54,7 @@ const ChatModule = (function () {
       setTimeout(() => {
         _chat.appendMessage(msg);
         _q('#typing').classList.add('hidden');
-      }, msg?.typing ? 2000 : 100);
+      }, msg?.typing ? getRandomNumber(500, 2000) : 100);
 
     }
 
