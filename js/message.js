@@ -3,7 +3,7 @@ window._q = (q) => document.querySelector(q);
 const ChatModule = (function () {
   let instance;
   function init({ chatMessagesDefault, chatMessages, notiContent, chatTo }) {
-    let chatModule = {
+    let _chat = {
       chatMessagesDefault,
       chatMessages,
       notiContent,
@@ -11,7 +11,7 @@ const ChatModule = (function () {
     };
 
 
-    chatModule.appendMessage = function (msg, chatDelay = 100) {
+    _chat.appendMessage = function (msg, chatDelay = 100) {
       if (!msg) return;
       msg.name = msg.name || "ms" + +new Date();
       const chatMessageList = _q('#chat_list .chat-message-list');
@@ -28,40 +28,40 @@ const ChatModule = (function () {
 
       setTimeout(function () {
         _q(msgname).classList.add('fade-in');
-        chatModule.onRowAdded();
+        _chat.onRowAdded();
       }, chatDelay);
 
       setTimeout(function () {
         _q(msginner).classList.add('fade-in');
-        chatModule.onRowAdded();
+        _chat.onRowAdded();
       }, chatDelay + (msg.delay || 100) + 10);
     };
 
-    chatModule.handleKeyUp = function (event) {
+    _chat.handleKeyUp = function (event) {
       if (event.keyCode === 13) {
-        chatModule.sendMyChat();
+        _chat.sendMyChat();
       } else if (event.keyCode === 40) {
-        chatModule.showNextChat();
+        _chat.showNextChat();
       } else if (event.ctrlKey) {
         if (event.code === "KeyM") {
-          chatModule.showNextChat();
+          _chat.showNextChat();
         } else if (event.code === "KeyN") {
-          chatModule.showNoti(chatModule.notiContent[1], 'nd');
+          _chat.showNoti(_chat.notiContent[1], 'nd');
         }
       }
     };
-    chatModule.showNextChat = () => {
+    _chat.showNextChat = () => {
       _q('#typing').classList.remove('hidden');
-      const msg = chatModule.chatMessages.shift();
+      const msg = _chat.chatMessages.shift();
       setTimeout(() => {
-        chatModule.appendMessage(msg);
+        _chat.appendMessage(msg);
         _q('#typing').classList.add('hidden');
       }, msg?.typing ? 2000 : 100);
 
     }
 
-    chatModule.sendMyChat = () => {
-      chatModule.appendMessage({
+    _chat.sendMyChat = () => {
+      _chat.appendMessage({
         msg: _q('#chat_input').value,
         delay: 100,
         align: "right"
@@ -69,31 +69,39 @@ const ChatModule = (function () {
       _q('#chat_input').value = '';
     };
 
-    chatModule.onRowAdded = () => {
+    _chat.onRowAdded = () => {
       const chatContainer = _q('#chat_list .chat-container');
       chatContainer.scrollTop = chatContainer.scrollHeight;
     };
 
-    chatModule.showChatWindow = () => {
+    _chat.showChatWindow = () => {
       _q('#notification_container').classList.remove('show');
       _q('#chat_window').classList.add('show');
-      _q('#be_btn').classList.add('active');
+      _q(_chat.activeSender).classList.add('active');
       _q('#chat_input').focus();
 
     };
 
-    chatModule.hideChatWindow = function (onlyWindow) {
-      return function () {
-        if (!onlyWindow) {
-          chatModule.showNoti(chatModule.notiContent[0]);
-          _q('#notification_container').classList.add('show');
-        }
-        _q('#chat_window').classList.remove('show');
-        _q('#be_btn').classList.remove('active');
-      };
+    _chat.showChatWindow = function () {
+      _q('#chat_window').classList.add('show');
+      _q('#be_btn').classList.add('active');
     };
 
-    chatModule.showNoti = function (notiContent, clsName) {
+    _chat.hideChatWindow = function () {
+      _q('#chat_window').classList.remove('show');
+      _q('#be_btn').classList.remove('active');
+    };
+
+    _chat.showDefaultNoti = () => {
+      _chat.showNoti(_chat.notiContent[0]);
+      _q('#notification_container').classList.add('show');
+    }
+
+    _chat.hideDefaultNoti = () => {
+      _q('#notification_container').classList.remove('show');
+    }
+
+    _chat.showNoti = function (notiContent, clsName) {
       const noti = document.createElement('div');
       noti.className = "CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]";
       noti.innerText = notiContent;
@@ -107,45 +115,56 @@ const ChatModule = (function () {
       }
     };
 
-    chatModule.loadDefaultMsg = () => {
+    _chat.loadDefaultMsg = () => {
       // 1
-      chatModule.chatMessagesDefault?.forEach((msg, i) => {
-        chatModule.appendMessage(msg, 110 + (i * 110));
+      _chat.chatMessagesDefault?.forEach((msg, i) => {
+        _chat.appendMessage(msg, 110 + (i * 110));
       });
       // 2 
-      if (chatModule.chatTo) {
-        _q('#chat_to').innerText = chatModule.chatTo;
+      if (_chat.chatTo) {
+        _q('#chat_to').innerText = _chat.chatTo;
       }
     };
 
-    chatModule.onLoad = () => {
-      chatModule.loadDefaultMsg();
+    _chat.eventListener = () => {
       // Add event listener to the document for keyup events
       _q('#chat_input').addEventListener('keyup', function (event) {
-        chatModule.handleKeyUp(event);
+        _chat.handleKeyUp(event);
       });
       // Add event listener to the document for keyup events
       _q('#send_chat').addEventListener('click', function () {
-        chatModule.sendMyChat();
+        _chat.sendMyChat();
       });
       //
       _q('#notification_container').addEventListener('click', function () {
-        chatModule.showChatWindow();
+        _chat.showChatWindow();
       });
       //
       _q('#be_btn').addEventListener('click', function () {
-        chatModule.showChatWindow();
+        _chat.showChatWindow();
       });
       //
       _q('#close_chat_window').addEventListener('click', function () {
-        chatModule.hideChatWindow(1)();
+        _chat.hideChatWindow();
       });
-      //
-      setTimeout(function () {
-        chatModule.hideChatWindow(0)();
-      }, 1000);
     }
-    return chatModule;
+
+    _chat.onLoad = () => {
+      _chat.loadDefaultMsg();
+      //
+      _chat.eventListener();
+      //
+      if (_chat.showChatBox) {
+        _chat.showChatWindow();
+        _chat.hideDefaultNoti();
+      } else {
+        setTimeout(function () {
+          _chat.hideChatWindow();
+          _chat.showDefaultNoti();
+        }, 500);
+      }
+    }
+    return _chat;
   }
 
   return {

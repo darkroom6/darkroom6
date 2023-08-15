@@ -31,6 +31,12 @@ let chatMessages = [{
 
 const notiContent = ["Có tin nhắn mới của GS Trọng"];
 
-const chatModule = ChatModule.getInstance({ chatMessagesDefault, chatMessages, notiContent, chatTo: "GS Trọng" });
+const chatModule = ChatModule.getInstance({
+  chatMessagesDefault,
+  chatMessages,
+  notiContent,
+  chatTo: "GS Trọng",
+  activeSender: '#gs_btn'
+});
 // Wait for the document to be fully loaded before adding the event listener
 document.addEventListener('DOMContentLoaded', chatModule.onLoad);
