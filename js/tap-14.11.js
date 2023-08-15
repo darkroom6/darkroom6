@@ -5,7 +5,11 @@ let chatMessages = [
   { msg: "Thanh đến chưa?", typing: true },
   { msg: "Khi nào có thể cho Hoàng liều tiếp theo được?" },
   { msg: "Vì lần mất kiểm soát vừa rồi?" },
-  { msg: "Dấu hiệu gì?" }
+  { msg: "Dấu hiệu gì?" },
+  { msg: "OK" },
+  { msg: "Để thử với Thanh trước", typing: 1 },
+  { msg: "Với Hoàng sau" }
+  { msg: "Một sự đột phá trong Tâm Thức" }
 ];
 
 
