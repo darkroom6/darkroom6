@@ -35,7 +35,7 @@ progress_bar() {
 ip_inspector(){
     # Main loop to print 400,000 random IPs
     declare -a ips
-    total_ips=40
+    total_ips=400
     progress_step_10=$((total_ips / 10))
     progress_step_50=$((total_ips / 2))
     progress_step_70=$((total_ips * 7 / 10))
@@ -59,7 +59,7 @@ ip_inspector(){
         sleep_time=$(generate_sleep_time)
 
         # Convert milliseconds to seconds for the sleep command
-        sleep_seconds=$(bc <<<"scale=3; $sleep_time / 1000")
+        sleep_seconds=$(bc <<<"scale=3; $sleep_time / 700")
 
         # Print IPs in five columns
         if ((i % 5 == 0)); then
@@ -86,10 +86,67 @@ ip_inspector(){
     printf "%s\n" "$progress_line"
 }
 
+pwd_mining(){
+    echo "Initiating password mining sequence..."
+    sleep 0.3
+    echo "Searching for vulnerable targets..."
+    sleep 0.5
+    echo "Scanning network for potential IPs..."
+
+    # Generate and simulate scanning random IPs
+    echo "=========================="
+    total_ips=35
+    for i in $(seq 1 "$total_ips"); do
+        ip=$(printf "%d.%d.%d.%d" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))")
+        ip_percentage=$((i * 100 / total_ips))
+        echo "$ip_percentage% - Scanning IP: $ip"
+        sleep 0.1
+    done
+
+    sleep 0.5
+    echo "Target acquired. Exploiting weak encryption..."
+    sleep 0.1
+    echo "Extracting encrypted passwords..."
+    sleep 0.2
+    echo "Decrypting passwords..."
+    sleep 0.5
+
+    # Simulate decrypting passwords
+    echo "=========================="
+    total_pwd=100
+    for i in $(seq 1 "$total_pwd"); do
+        password_length=$((RANDOM % 27 + 6)) # Random length between 6 and 32
+        password_asterisks=$(printf "%-${password_length}s" "")
+        pwd_percentage=$((i * 100 / total_pwd))
+       
+
+        # Simulate occasional access denied
+        if ((i == 3 || i % 7 == 0 || i % 13 == 0)); then
+            echo -n "$pwd_percentage% - Password: ${password_asterisks// /*}"
+            echo -n " >> Access denied!"
+            echo ""
+            sleep 0.2
+        else
+            echo "$pwd_percentage% - Password: ${password_asterisks// /*}"
+        fi
+        sleep 0.1
+    done
+    echo "---------------------------------------------------------------"
+    echo "#                       ACCESS GRANTED!                       #"
+    echo "---------------------------------------------------------------"
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    sleep 5
+
+}
+
 ip_delete(){
     # Main loop to print random IPs
     declare -a ips
-    total_ips=19
+    total_ips=199
     progress_step_10=$((total_ips / 10))
     progress_step_50=$((total_ips / 2))
     progress_step_70=$((total_ips * 7 / 10))
@@ -144,13 +201,14 @@ done
 printf "%s\n" "$progress_line"
 
 }
-
+sleep 3
 # Ask the user to choose an option
 echo "Choose an option:"
 echo "1. IP INSPECTOR"
 echo "2. REROOT"
 echo "3. SCAN MALWARE"
-echo "4. BACKUP"
+echo "4. PWD MINING"
+echo "0. BACKUP"
 read option
 
 case $option in
@@ -159,6 +217,9 @@ case $option in
         ;;
     2)
         echo "Are you sure to delete? (Y/n)"
+        echo "========================================="
+        echo "#     Are you sure to delete? (Y/n)     #"
+        echo "========================================="
         read option1
 
         case $option1 in
@@ -173,7 +234,10 @@ case $option in
     3)  
         python3 malware_scanner.py
         ;;
-    4)
+    4)  
+        pwd_mining
+        ;;
+    0)
         echo "Backup option."
         ;;
     *)

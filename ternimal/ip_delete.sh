@@ -19,7 +19,7 @@ generate_sleep_time() {
 
 # Function to print IPs in five columns
 print_ips() {
-    printf "%-20s %-20s %-20s %-20s %-20s\n" "${ips[@]}"
+    printf "%-20s %-20s %-20s %-20s %-20s\n" "${ips[@]}"2
 }
 
 # Function to display the progress bar
