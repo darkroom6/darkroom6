@@ -1,15 +1,16 @@
 const chatMessagesDefault = [];
 
 let chatMessages = [
-  { msg: "Ai theo dõi?", typing: true },
-  { msg: "Thanh đến chưa?", typing: true },
+  { msg: "Ai theo dõi?", typing: 1 },
+  { msg: "Thanh đến chưa?", typing: 1 },
   { msg: "Khi nào có thể cho Hoàng liều tiếp theo được?", typing: 1 },
   { msg: "Vì lần mất kiểm soát vừa rồi?" },
   { msg: "Dấu hiệu gì?" },
+  { msg: "Cậu tăng liều lên cho Thanh đi!", typing: 1 },
   { msg: "OK" },
   { msg: "Để thử với Thanh trước", typing: 1 },
   { msg: "Với Hoàng sau" },
-  { msg: "Một sự đột phá trong Tâm Thức" }
+  { msg: "Một sự đột phá trong Tâm Thức", typing: 1 }
 ];
 
 
