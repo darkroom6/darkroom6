@@ -15,3 +15,8 @@
 - [Tập 17](/tap-17.html)
 
 - [Tập 21](/tap-21.html)
+
+# HINT:
+  ## CTRL + B: Hiển thi thông báo tin nhắn từ Beboy
+  ## CTRL + G: Hiển thi thông báo tin nhắn từ GS Trọng
+  ## Mũi tên xuống: hiện tin nhắn tiếp theo
