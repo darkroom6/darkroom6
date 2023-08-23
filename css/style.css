@@ -1166,7 +1166,7 @@ video {
   cursor: pointer;
 }
 
-#notification_container.nd {
+#notification_container.top {
   bottom: inherit;
   top: 60px;
 }
@@ -1243,6 +1243,11 @@ video {
   margin: 0px;
   padding: 0px;
   list-style: none;
+}
+
+#chat_list .chat-message-list[class-2nd="be_chat"]>li.gs_chat,
+#chat_list .chat-message-list[class-2nd="gs_chat"]>li.be_chat{
+  display: none;
 }
 
 #chat_list .chat-message-list>li,

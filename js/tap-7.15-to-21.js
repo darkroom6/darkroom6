@@ -34,12 +34,21 @@ let chatMessages = [{
   align: "left"
 },
 ];
-const notiContent = ["Có tin nhắn mới của Beboy", "BeBoy muốn kết nối với bạn."];
+const notifications = [{
+  content: "Có tin nhắn mới của Beboy",
+  chatTo: "Beboy",
+  activeSender: '#be_chat',
+  isDefault:1
+}, {
+  content: "BeBoy muốn kết nối với bạn.",
+  chatTo: "Beboy",
+  activeSender: '#be_chat'
+}];
 const chatModule = ChatModule.getInstance({
   chatMessagesDefault,
   chatMessages,
-  notiContent,
-  activeSender: '#be_btn',
+  notifications,
+  activeSender: '#be_chat',
   showChatBox: false,
   chatTo: "Beboy",
 });

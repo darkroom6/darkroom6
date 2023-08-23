@@ -16,7 +16,12 @@ const ChatModule = (function () {
       const msgname = "." + msg.name;
       const msginner = ".messageinner-" + msg.name;
       const chatListItem = document.createElement('li');
-      chatListItem.className = "message-" + (msg.align || 'left') + " " + msg.name + (msg.icon ? ' icon' : '');
+      chatListItem.className = [
+        "message-" + (msg.align || 'left'),
+        msg.name,
+        msg.icon ? 'icon' : '',
+        msg.class2nd || _chat.activeSender.replace('#', '') || '',
+      ].join(' ');
       const messageInnerDiv = document.createElement('div');
       messageInnerDiv.className = "messageinner-" + msg.name;
       const messageContent = "<span class='message-text'>" + msg.msg + "</span>";
@@ -43,8 +48,10 @@ const ChatModule = (function () {
       } else if (event.ctrlKey) {
         if (event.code === "KeyM") {
           _chat.showNextChat();
-        } else if (event.code === "KeyN") {
-          _chat.showNoti(_chat.notiContent[1], 'nd');
+        } else if (event.code === "KeyG") {
+          _chat.showNotification(_chat.notifications[1], 'top');
+        } else if (event.code === "KeyB") {
+          _chat.showNotification(_chat.notifications[0], 'top');
         }
       }
     };
@@ -59,12 +66,15 @@ const ChatModule = (function () {
     }
 
     _chat.sendMyChat = () => {
-      _chat.appendMessage({
-        msg: _q('#chat_input').value,
-        delay: 100,
-        align: "right"
-      });
-      _q('#chat_input').value = '';
+      if (_q('#chat_input').value) {
+        _chat.appendMessage({
+          msg: _q('#chat_input').value,
+          delay: 100,
+          align: "right"
+        });
+        _q('#chat_input').value = '';
+      }
+      _q('#chat_input').focus();
     };
 
     _chat.onRowAdded = () => {
@@ -77,7 +87,7 @@ const ChatModule = (function () {
       _q('#chat_window').classList.add('show');
       _q(_chat.activeSender).classList.add('active');
       _q('#chat_input').focus();
-
+      _q('ul.chat-message-list').setAttribute('class-2nd', _chat.activeSender.replace('#', ''));
     };
 
     _chat.hideChatWindow = function () {
@@ -86,23 +96,29 @@ const ChatModule = (function () {
     };
 
     _chat.showDefaultNoti = () => {
-      _chat.showNoti(_chat.notiContent[0]);
-      _q('#notification_container').classList.add('show');
+      if (_chat.notifications[0].isDefault) {
+        _chat.showNotification(_chat.notifications[0]);
+        _q('#notification_container').classList.add('show');
+      }
     }
 
     _chat.hideDefaultNoti = () => {
       _q('#notification_container').classList.remove('show');
     }
 
-    _chat.showNoti = function (notiContent, clsName) {
+    _chat.showNotification = function (notifications, clsName) {
       const noti = document.createElement('div');
       noti.className = "CTinNhNMICABeboy text-center text-white text-2xl font-medium leading-[33.60px]";
-      noti.innerText = notiContent;
+      //
+      noti.innerText = notifications.content;
+      //
+      _q('#notification_container').setAttribute('nd', JSON.stringify(notifications));
       _q('#notification_container').innerHTML = '';
       _q('#notification_container').appendChild(noti);
       _q('#notification_container').classList.add('show', clsName);
       if (clsName) {
-        setTimeout(() => {
+        clearTimeout(_chat.timeOutNoti)
+        _chat.timeOutNoti = setTimeout(() => {
           _q('#notification_container').classList.remove('show');
         }, 5e3);
       }
@@ -119,6 +135,23 @@ const ChatModule = (function () {
       }
     };
 
+    _chat.notificationClick = () => {
+      if (_q('#notification_container').classList.contains('top')) {
+        _chat.hideChatWindow();
+        const noti = JSON.parse(_q('#notification_container').getAttribute('nd'));
+        _q('#chat_to').innerText = noti.chatTo;
+        _q(_chat.activeSender).removeEventListener('click', _chat.showChatWindow);
+        _chat.activeSender = noti.activeSender;
+        _q(_chat.activeSender).addEventListener('click', _chat.showChatWindow);
+        _q('ul.chat-message-list').setAttribute('class-2nd', noti.activeSender.replace('#', ''));
+        setTimeout(() => {
+          _chat.showChatWindow();
+        }, 150);
+      } else {
+        _chat.showChatWindow();
+      }
+    }
+
     _chat.eventListener = () => {
       // Add event listener to the document for keyup events
       _q('#chat_input').addEventListener('keyup', function (event) {
@@ -129,9 +162,7 @@ const ChatModule = (function () {
         _chat.sendMyChat();
       });
       //
-      _q('#notification_container').addEventListener('click', function () {
-        _chat.showChatWindow();
-      });
+      _q('#notification_container').addEventListener('click', _chat.notificationClick);
       //
       _q(_chat.activeSender).addEventListener('click', function () {
         _chat.showChatWindow();
@@ -161,9 +192,9 @@ const ChatModule = (function () {
   }
 
   return {
-    getInstance: function (chatMessagesDefault, chatMessages, notiContent) {
+    getInstance: function (chatMessagesDefault, chatMessages, notifications) {
       if (!instance) {
-        instance = init(chatMessagesDefault, chatMessages, notiContent);
+        instance = init(chatMessagesDefault, chatMessages, notifications);
       }
       return instance;
     }
