@@ -11,7 +11,7 @@ let chatMessages = [{
   typing: true,
   msg: 'Muốn tôi tắt máy?'
 }, {
-  msg: 'Nếu hết pin thì sao? xạc',
+  msg: 'Nếu hết pin thì sao?',
 }, {
   msg: "Đổi bằng cách nào?"
 }, {
