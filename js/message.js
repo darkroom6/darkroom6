@@ -112,6 +112,12 @@ const ChatModule = (function () {
       //
       noti.innerText = notifications.content;
       //
+      if (notifications.msgCount) {
+        const msgCount = document.createElement('span');
+        msgCount.innerText = notifications.msgCount;
+      _q(notifications.activeSender).appendChild(msgCount);
+      }
+      //
       _q('#notification_container').setAttribute('nd', JSON.stringify(notifications));
       _q('#notification_container').innerHTML = '';
       _q('#notification_container').appendChild(noti);

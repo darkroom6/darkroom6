@@ -15,7 +15,8 @@ let chatMessages = [
 const notifications = [{
   content: "Có tin nhắn mới của Beboy",
   chatTo: "Beboy",
-  activeSender: '#be_chat'
+  activeSender: '#be_chat',
+  msgCount: 1
 }, {
   content: "GS Trọng is online",
   chatTo: "GS Trọng",
