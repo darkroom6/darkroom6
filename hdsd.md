@@ -2,7 +2,8 @@
 
 ## Script Mô tả
 
-Đây là một script bash được viết để thực hiện các tác vụ khác nhau liên quan đến mạng và bảo mật hệ thống. Dưới đây là các tùy chọn và mô tả tương ứng của chúng:
+Đây là một script bash được viết để thực hiện các tác vụ gỉa lập với bash và python.
+Dưới đây là các tùy chọn và mô tả tương ứng của từng tùy chọn:
 
 1. **IP INSPECTOR**: Tạo và hiển thị một loạt địa chỉ IP ngẫu nhiên, giả lập quá trình quét IP mạng.
 2. **REROOT**: Xóa địa chỉ IP ngẫu nhiên, giả lập quá trình xóa địa chỉ IP mạng.
@@ -15,9 +16,8 @@
 Trước khi chạy script, bạn cần đảm bảo rằng bạn đã cài đặt Bash và Python 3 (nếu bạn chọn tùy chọn "SCAN MALWARE"). 
 
 ## Cài đặt
-
 ### Hướng dẫn cài đặt Bash và Python 3 trên macOS
-Bash và Python 3 là hai ngôn ngữ lập trình phổ biến được sử dụng rộng rãi trên macOS. Bash là một ngôn ngữ shell được sử dụng để điều khiển và quản lý hệ thống, trong khi Python 3 là một ngôn ngữ lập trình cấp cao được sử dụng để phát triển các ứng dụng đa nền tảng.
+Bash và Python 3 là hai ngôn ngữ lập trình phổ biến được sử dụng rộng rãi trên macOS.Bash là một ngôn ngữ shell được sử dụng để điều khiển và quản lý hệ thống, trong khi Python 3 là một ngôn ngữ lập trình cấp cao được sử dụng để phát triển các ứng dụng đa nền tảng.
 
 ### Cài đặt Bash
   - Bash được cài đặt sẵn trên macOS, vì vậy bạn không cần phải cài đặt lại nó. Tuy nhiên, bạn có thể cập nhật Bash lên phiên bản mới nhất bằng cách sử dụng lệnh sau:
@@ -34,7 +34,7 @@ Bash và Python 3 là hai ngôn ngữ lập trình phổ biến được sử d�
     brew install python3
     ```
 2. Cài đặt từ Python.org
-Để cài đặt Python 3 từ Python.org, hãy truy cập trang web của Python và tải xuống tệp trình cài đặt. Sau khi tải xuống tệp trình cài đặt, hãy chạy nó để cài đặt Python 3.
+Để cài đặt Python 3 từ Python.org, hãy truy cập trang web của [Python](https://docs.python.org/3/) và tải xuống tệp trình cài đặt. Sau khi tải xuống tệp trình cài đặt, hãy chạy nó để cài đặt Python 3.
 
 ### Kiểm tra cài đặt
 Sau khi cài đặt Bash và Python 3, bạn có thể kiểm tra cài đặt bằng cách chạy các lệnh sau:
