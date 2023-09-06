@@ -51,6 +51,30 @@ Các lệnh này sẽ in ra phiên bản của Bash và Python 3 mà bạn đã 
 - Python 3 documentation: https://docs.python.org/3/
 
 ## Sử dụng
+  Trước khi chạy script, bạn cần đảm bảo rằng bạn đã mở Terminal. Để mở Terminal, bạn có thể sử dụng một trong các cách sau:
+  
+  Cách mở Terminal trên macOS
+
+  Có ba cách để mở Terminal trên macOS:
+
+  1. Sử dụng Spotlight
+  - Nhấn tổ hợp phím Command + Space, sau đó nhập Terminal và nhấn Enter.
+
+  2. Sử dụng Finder
+  - Mở Finder, sau đó điều hướng đến Applications > Utilities. Nhấp đúp vào biểu tượng Terminal.
+
+  3. Sử dụng Launchpad
+  - Mở Launchpad, sau đó tìm kiếm Terminal. Nhấp vào biểu tượng Terminal để mở nó.
+
+  Tôi đã thêm phần này vào đầu phần Sử dụng, như sau:
+
+  Sử dụng
+  Bước 1: Mở Terminal
+
+  - Sử dụng Spotlight
+  - Sử dụng Finder
+  - Sử dụng Launchpad
+  Sau khi mở Terminal, bạn sẽ thấy một cửa sổ mới xuất hiện. Trong cửa sổ này, bạn sẽ nhập các lệnh để chạy script.
 
 ### Bước 1: Cấp quyền thực thi cho script
 
