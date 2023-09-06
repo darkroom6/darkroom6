@@ -16,6 +16,8 @@
 
 - [Tập 21](/tap-21.html)
 
+- [Hướng dẫn dùng script](/hdsd.md)
+
 # HINT:
   - ## CTRL + B: Hiển thi thông báo tin nhắn từ Beboy
 
