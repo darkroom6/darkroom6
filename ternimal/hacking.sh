@@ -143,6 +143,46 @@ pwd_mining(){
 
 }
 
+block_greendoor() {
+    echo "Initializing security protocol..."
+    sleep 1
+    echo "Analyzing system vulnerabilities..."
+    sleep 1
+    echo "Scanning network for potential threats..."
+    sleep 1
+
+    # Generate and simulate scanning random IPs
+    total_ips=70
+    for i in $(seq 1 "$total_ips"); do
+        ip=$(printf "%d.%d.%d.%d" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))")
+        ip_percentage=$((i * 100 / total_ips))
+        ip_number=$(printf "%02d" "$i") # Add leading zeros for IP numbers < 10
+        space_padding=$((15 - ${#ip})) # Calculate the number of leading spaces required
+        spaces=$(printf "%*s" "$space_padding" "") # Generate leading spaces
+        echo "Scanning IP $ip_number/$total_ips: $spaces$ip [=====>] ($ip_percentage% complete)"
+        
+        sleep 0.1
+    done
+    echo "Scanning complete: $total_ips IP addresses analyzed."
+
+    echo "Target locked. Initiating encryption bypass..."
+    sleep 1
+    echo "Extracting encrypted data packets..."
+    sleep 1
+    echo "Decrypting secure channels..."
+    sleep 1
+    echo "Protection process completed."
+
+    # Simulate decrypting passwords
+    echo "---------------------------------------------------------------"
+    echo "█▓▒░                                                       ░▒▓█"
+    echo "█▓▒░               Chặn GreenDoor thành công!              ░▒▓█"
+    echo "█▓▒░                                                       ░▒▓█"
+    echo "---------------------------------------------------------------"
+    echo ""
+}
+
+
 ip_delete(){
     # Main loop to print random IPs
     declare -a ips
@@ -201,13 +241,14 @@ done
 printf "%s\n" "$progress_line"
 
 }
-sleep 3
+sleep .3
 # Ask the user to choose an option
 echo "Choose an option:"
 echo "1. IP INSPECTOR"
 echo "2. REROOT"
 echo "3. SCAN MALWARE"
 echo "4. PWD MINING"
+echo "5. BLOCK GREENDOOR"
 echo "0. BACKUP"
 read option
 
@@ -236,6 +277,9 @@ case $option in
         ;;
     4)  
         pwd_mining
+        ;;
+    5)
+        block_greendoor
         ;;
     0)
         echo "Backup option."
