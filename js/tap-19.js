@@ -1,20 +1,21 @@
 const chatMessagesDefault = [
- 
+  {
+    name: 'ms1',
+    msg: "B, anh đang ở đâu rồi?"
+  }
 ];
 
 let chatMessages = [
-   {
-    name: 'ms1',
+  {
     delay: 100, msg: 'Ok',
   },
   {
-    name: 'ms2',
     delay: 100, msg: 'Rồi',
   }
 ];
 
 const notifications = [{
-  isDefault:1,
+  isDefault: 1,
   content: "Có tin nhắn mới của Tuấn",
   chatTo: "Tuấn",
   activeSender: '#tuan_chat',
