@@ -14,6 +14,8 @@
   
 - [Tập 17](/tap-17.html)
 
+- [Tập 19](/tap-19.html)
+
 - [Tập 21](/tap-21.html)
 
 - [Hướng dẫn dùng script](/hdsd.md)
