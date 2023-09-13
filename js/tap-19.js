@@ -14,6 +14,7 @@ let chatMessages = [
 ];
 
 const notifications = [{
+  isDefault:1,
   content: "Có tin nhắn mới của Tuấn",
   chatTo: "Tuấn",
   activeSender: '#tuan_chat',

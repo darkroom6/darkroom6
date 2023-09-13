@@ -6,7 +6,7 @@ function getRandomNumber(min, max) {
 const ChatModule = (function () {
   let instance;
   function init(input) {
-    let _chat = input;
+    let _chat = { ...input };
 
 
     _chat.appendMessage = function (msg, chatDelay = 100) {
@@ -115,7 +115,7 @@ const ChatModule = (function () {
       if (notifications.msgCount) {
         const msgCount = document.createElement('span');
         msgCount.innerText = notifications.msgCount;
-      _q(notifications.activeSender).appendChild(msgCount);
+        _q(notifications.activeSender).appendChild(msgCount);
       }
       //
       _q('#notification_container').setAttribute('nd', JSON.stringify(notifications));

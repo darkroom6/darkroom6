@@ -31,7 +31,6 @@ progress_bar() {
     printf "\r[%-${width}s] %d%%" "${bar// /#}" "$progress"
 }
 
-
 ip_inspector(){
     # Main loop to print 400,000 random IPs
     declare -a ips
@@ -174,14 +173,85 @@ block_greendoor() {
     echo "Protection process completed."
 
     # Simulate decrypting passwords
-    echo "---------------------------------------------------------------"
-    echo "█▓▒░                                                       ░▒▓█"
-    echo "█▓▒░               Chặn GreenDoor thành công!              ░▒▓█"
-    echo "█▓▒░                                                       ░▒▓█"
-    echo "---------------------------------------------------------------"
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░               Chặn GreenDoor thành công!              ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
     echo ""
 }
 
+find_greendoor() {
+    echo "Initializing backdoor scanning protocol..."
+    sleep 1
+    echo "Analyzing system vulnerabilities..."
+    sleep 1
+    echo "Scanning network for potential threats..."
+    sleep 1
+    # Generate and simulate scanning random IPs
+    total_ips=45
+    for i in $(seq 1 "$total_ips"); do
+        ip=$(printf "%d.%d.%d.%d" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))")
+        ip_percentage=$((i * 100 / total_ips))
+        ip_number=$(printf "%02d" "$i") # Add leading zeros for IP numbers < 10
+        space_padding=$((15 - ${#ip})) # Calculate the number of leading spaces required
+        spaces=$(printf "%*s" "$space_padding" "") # Generate leading spaces
+        echo "Scanning IP $ip_number/$total_ips: $spaces$ip [=====>] ($ip_percentage% complete)"
+        
+        sleep 0.1
+    done
+    echo "Scanning complete: $total_ips IP addresses analyzed."
+
+    echo "Backdoor found..."
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░         Mở cổng sau để vào GreenDoor? (Yes/No)        ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+    echo ""
+    read option1
+    case $option1 in
+        'Y' | 'y' | 'Yes' | 'yes')
+        bypass_greendoor
+        ;;
+    esac
+}
+
+bypass_greendoor() {
+    echo "Initializing backdoor bypass protocol..."
+    sleep 1
+    echo "Analyzing system vulnerabilities..."
+    sleep 1
+    echo "Scanning network for potential threats..."
+    sleep 1
+
+    # Generate and simulate scanning random IPs
+    total_ips=30
+    for i in $(seq 1 "$total_ips"); do
+        ip=$(printf "%d.%d.%d.%d" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))" "$((RANDOM % 256))")
+        ip_percentage=$((i * 100 / total_ips))
+        ip_number=$(printf "%02d" "$i") # Add leading zeros for IP numbers < 10
+        space_padding=$((15 - ${#ip})) # Calculate the number of leading spaces required
+        spaces=$(printf "%*s" "$space_padding" "") # Generate leading spaces
+        echo "Try to logging $ip_number/$total_ips: $spaces$ip [=====>] ($ip_percentage% complete)"
+        
+        sleep 0.1
+    done
+    echo "Scanning complete: $total_ips IP addresses analyzed."
+
+    sleep 1
+    echo "Backdoor bypass successful. Accessing secure system..."
+    sleep 1
+    echo "Extracting confidential data packets..."
+    sleep 1
+    echo "Decrypting secure channels..."
+    sleep 1
+    echo "Access granted."
+
+    # Simulate decrypting passwords
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░                  Xin chào Super Admin!                ░░▒▒▓▓██"
+    echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+    echo ""
+    sleep 5
+
+}
 
 ip_delete(){
     # Main loop to print random IPs
@@ -216,10 +286,10 @@ ip_delete(){
     if ((i % 3 == 0)); then
         ips[4]=${ips[0]}
         print_ips
-        printf "%s\n" "========================================================================================================="
-        printf "%s\n" "#                                       IP DELETED SUCCESSFULLY!                                         #"
-        printf "%s\n" "========================================================================================================="
-
+        echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+        echo "██▓▓▒▒░░                   Xóa IP thành công!                  ░░▒▒▓▓██"
+        echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+        sleep 5
         unset ips
     else
         ips[$((i % 5))]=${ips[0]}
@@ -235,20 +305,100 @@ ip_delete(){
         progress_line="\r[%-${width}s] %d%%" "${bar// /#}" "$current_progress"
         sleep 0.5
     fi
-done
 
-# Display 100% progress at the bottom
-printf "%s\n" "$progress_line"
+    done
+
+    # Display 100% progress at the bottom
+    printf "%s\n" "$progress_line"
 
 }
-sleep .3
+
+# Define a function to generate random phone numbers
+phone_numbers() {
+    # Initialize an empty array to store the random phone numbers
+    local phone_numbers=()
+    
+    # Array of phone number prefixes
+    local prefixes=("09X" "09Y" "09X" "09Z" "09X" "09X" "09X" "092" "03X" "03Y" "03Z")
+
+    # Loop to generate random 7-digit numbers and combine with prefixes
+    for prefix in "${prefixes[@]}"; do
+        for _ in {1..2}; do
+            # Generate a random 7-digit number
+            local random_number=$((1000000 + RANDOM % 9000000))
+            # Combine with the prefix to form a 10-digit phone number
+            local full_number="${prefix}${random_number}"
+            # Add to the list of phone numbers
+            phone_numbers+=("$full_number")
+        done
+    done
+
+    # Return the array of phone numbers
+    echo "${phone_numbers[@]}"
+}
+
+find_location() {
+    echo "Initiating location inspector protocol..."
+    sleep 1
+    echo "Analyzing network for targets..."
+    sleep 1
+    echo "Scanning for potential coordinates..."
+    sleep 1
+    
+    # Array of fictional phone numbers
+    # Call the function to get the list of phone numbers
+    phone_numbers_list=($(phone_numbers))
+
+   # Define a function to display a loading bar
+    display_loading() {
+     
+        local length=$1
+        local bar=""
+        for ((i = 0; i < length; i++)); do
+            bar+="▓"
+        done
+        echo -ne "$bar"
+    }
+
+    # Loop through the generated phone numbers
+    for phone_number in "${phone_numbers_list[@]}"; do
+        # Generate random latitude and longitude
+        latitude=$((RANDOM % 180 - 90)).$((RANDOM % 1000000))
+        longitude=$((RANDOM % 360 - 180)).$((RANDOM % 1000000))
+
+        # Simulate location inspection
+        echo -n "Inspecting location for target: $phone_number ["
+        # Display a loading bar with 10 steps
+        for ((step = 0; step < 10; step++)); do
+            display_loading $step
+            sleep 0.1
+            echo -ne "\b"
+        done
+        echo "▓"
+        
+        echo -n "Target Coordinates: $latitude, $longitude"
+        echo ""
+        sleep 0.3
+    done
+
+    echo "Location inspector protocol complete. Accessing secure system..."
+    sleep 1
+    echo "Extracting confidential data packets..."
+    sleep 1
+    echo "Decrypting secure channels..."
+    sleep 1
+    echo "Access granted."
+}
+
+sleep 3
 # Ask the user to choose an option
 echo "Choose an option:"
 echo "1. IP INSPECTOR"
 echo "2. REROOT"
-echo "3. SCAN MALWARE"
-echo "4. PWD MINING"
-echo "5. BLOCK GREENDOOR"
+echo "3. PWD MINING"
+echo "4. BLOCK GREENDOOR"
+echo "5. FIND GREENDOOR"
+echo "6. FIND LOCATION"
 echo "0. BACKUP"
 read option
 
@@ -258,9 +408,10 @@ case $option in
         ;;
     2)
         echo "Are you sure to delete? (Y/n)"
-        echo "========================================="
-        echo "#     Are you sure to delete? (Y/n)     #"
-        echo "========================================="
+        echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+        echo "██▓▓▒▒░░           Are you sure to delete? (Y/n)               ░░▒▒▓▓██"
+        echo "██▓▓▒▒░░                                                       ░░▒▒▓▓██"
+
         read option1
 
         case $option1 in
@@ -273,13 +424,16 @@ case $option in
         esac
         ;;
     3)  
-        python3 malware_scanner.py
-        ;;
-    4)  
         pwd_mining
         ;;
-    5)
+    4)
         block_greendoor
+        ;;
+    5)
+        find_greendoor
+        ;;
+    6)
+        find_location
         ;;
     0)
         echo "Backup option."
