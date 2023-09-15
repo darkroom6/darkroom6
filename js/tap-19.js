@@ -7,10 +7,16 @@ const chatMessagesDefault = [
 
 let chatMessages = [
   {
-    delay: 100, msg: 'Ok',
+    delay: 100,
+    msg: 'Ok',
   },
   {
-    delay: 100, msg: 'Rồi',
+    delay: 100,
+    msg: 'Rồi',
+  },
+  {
+    msg: "Tụi nó đi rồi",
+    delay: 100
   }
 ];
 
